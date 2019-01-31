@@ -1,3 +1,14 @@
+$memezingaRed: #e23535;
+$main-fontFamily: url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
+$tags-fontFamily: 'BADABB';
+
+@font-face {
+  font-family: 'BADABB';
+  src: url('../fonts/BADABB.eot');
+  src: local('BADABB'), url('../fonts/BADABB.woff') format('woff'),
+    url('../fonts/BADABB.ttf') format('truetype');
+}
+
 .browserupgrade {
   margin: 0.2em 0;
   background: #ccc;
@@ -22,7 +33,8 @@ body {
 /* Custom page header */
 .header {
   padding-bottom: 1rem;
-  border-bottom: .05rem solid #e5e5e5;
+  border-bottom: 0.05rem solid #e5e5e5;
+  background: $memezingaRed;
 }
 
 /* Make the masthead heading the same height as the navigation */
@@ -36,7 +48,7 @@ body {
 .footer {
   padding-top: 1.5rem;
   color: #777;
-  border-top: .05rem solid #e5e5e5;
+  border-top: 0.05rem solid #e5e5e5;
 }
 
 /* Customize container */
@@ -52,10 +64,10 @@ body {
 /* Main marketing message and sign up button */
 .jumbotron {
   text-align: center;
-  border-bottom: .05rem solid #e5e5e5;
+  border-bottom: 0.05rem solid #e5e5e5;
 }
 .jumbotron .btn {
-  padding: .75rem 1.5rem;
+  padding: 0.75rem 1.5rem;
   font-size: 1.5rem;
 }
 
