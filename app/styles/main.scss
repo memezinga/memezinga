@@ -9,24 +9,29 @@ $tags-fontFamily: 'BADABB';
 	src: local('BADABB'), url('../fonts/BADABB.woff') format('woff'), url('../fonts/BADABB.ttf') format('truetype');
 }
 
-.browserupgrade {
-	margin: 0.2em 0;
-	background: #ccc;
-	color: #000;
-	padding: 0.2em 0;
-}
-
 
 /* Space out content a bit */
 
-body {}
+* {
+ box-sizing: border-box;
+ margin: 0;
+ padding: 0;
+}
+
+/* Navbar change color effect css*/
+.navbar-default{
+  transition:500ms ease;
+  background:transparent;
+}
+.navbar-default.scrolled{
+  background:#000;
+}
 
 
 /* Custom page header */
 
 .navbar {
-	background-color: transparent;
-	//opacity: 0.8;
+	opacity: 0.8;
 	font-family: $main-fontFamily;
 	padding: 20px 50px;
 }
@@ -37,8 +42,7 @@ body {}
 
 .btn {
 	border-radius: 25px;
-	margin: 0 14px;
-	width: 150px;
+	padding: 5px 30px;
 }
 
 .btn i {
@@ -84,7 +88,6 @@ body {}
 .main-title {
 	font-family: $tags-fontFamily;
 	font-size: 4em;
-	//margin: 2rem auto;
 }
 
 p {
@@ -98,8 +101,11 @@ p {
 
 
 /* Custom page footer */
-
 .main-footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100vw;
 	background-color: #333;
 	color: white;
 	padding: 20px;
@@ -107,6 +113,16 @@ p {
 		margin-top: 16px;
 		margin-right: 10px;
 	}
+}
+
+.footer-flexObj {
+  padding: 0 50px;
+}
+
+@media screen and (max-width: 575.98px){
+  .footer-flexObj {
+     flex-direction : column;
+  }
 }
 
 
@@ -121,7 +137,6 @@ p {
 .container-narrow>hr {
 	margin: 2rem 0;
 }
-
 
 /* Responsive: Portrait tablets and up */
 
