@@ -2,7 +2,7 @@
 An amazing Open Source meme's generator!
 We're working on the release v2.0.0. 
 
-![screenshot]()
+![screenshot](other/memezinga-screenshot.png)
 
 ### How it works
 - Step 1: start by choosing the best meme for your purpose from the gallery
