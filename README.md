@@ -18,7 +18,7 @@ We're working on the release v2.0.0.
 - Yeomann and Gulp has been used
 - Design: Boostrap and Sass
 
-Contributors:
+### Contributors:
 - [Fabiola Vieyra](https://github.com/Fa-v)
 - [Theba Gomez](https://github.com/KoolTheba)
 - [Ulises Gascón](https://github.com/UlisesGascon)
