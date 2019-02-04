@@ -9,8 +9,7 @@ $tags-fontFamily: 'BADABB';
 	src: local('BADABB'), url('../fonts/BADABB.woff') format('woff'), url('../fonts/BADABB.ttf') format('truetype');
 }
 
-
-/* Space out content a bit */
+/* General styles */
 
 * {
  box-sizing: border-box;
@@ -18,11 +17,17 @@ $tags-fontFamily: 'BADABB';
  padding: 0;
 }
 
+body {
+  font-family: $main-fontFamily, sans-serif;
+}
+
 /* Navbar change color effect css*/
+
 .navbar-default{
   transition:500ms ease;
   background:transparent;
 }
+
 .navbar-default.scrolled{
   background:#000;
 }
@@ -31,7 +36,6 @@ $tags-fontFamily: 'BADABB';
 /* Custom page header */
 
 .navbar {
-	opacity: 0.8;
 	font-family: $main-fontFamily;
 	padding: 20px 50px;
 }
@@ -49,7 +53,20 @@ $tags-fontFamily: 'BADABB';
 	margin-right: 13px;
 }
 
-.home-section {
+@media screen and (max-width: 575.98px){
+  .navbar {
+    justify-content: space-between;
+    padding: 20px 25px;
+  }
+  .navbar-brand {
+     font-size: 1rem;
+  }
+  .nav-link {
+    font-size: 0.8rem;
+  }
+}
+
+.header-section {
 	background: url(../images/bg_header.jpg);
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -63,7 +80,9 @@ $tags-fontFamily: 'BADABB';
 	margin-top: 80px;
 }
 
-.box {
+.steps-box {
+  display: flex;
+  justify-content: space-between;
 	width: 80%;
 	height: 42px;
 	position: relative;
@@ -81,8 +100,36 @@ $tags-fontFamily: 'BADABB';
 	}
 }
 
-.main-section {
-  margin-bottom: 5em;
+.dot-elem {
+  height: 45px;
+  width: 45px;
+  z-index: 100;
+  background-color: #343a40;
+  color: #fff;
+  text-align: center;
+  font-family: $tags-fontFamily;  
+  font-size: 1.8rem;
+  line-height: 1.5;
+  border-radius: 50%;
+  border: 1px solid white;
+  display: inline-block;
+}
+
+.description {
+  display: flex;
+  justify-content: space-between;
+	width: 85%;
+	height: 42px;
+	margin: auto;
+	margin-top: 21px;
+	font-family: $main-fontFamily;
+	.special {
+	  margin-right: 25px;
+	}
+}
+
+.home-main-section {
+  margin-bottom: 20em;
 }
 
 .main-title {
@@ -90,8 +137,12 @@ $tags-fontFamily: 'BADABB';
 	font-size: 4em;
 }
 
-p {
+.main-paragraph {
 	font-family: $main-fontFamily;
+}
+
+.img-placeholder {
+  margin-top: 80px;
 }
 
 .btn-danger {
@@ -102,7 +153,6 @@ p {
 
 /* Custom page footer */
 .main-footer {
-  position: fixed;
   left: 0;
   bottom: 0;
   width: 100vw;
