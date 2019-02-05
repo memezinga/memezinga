@@ -1,6 +1,7 @@
 //Google Fonts
 @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
 $memezingaRed: #e23535;
+$memezingaYellow: #fef851;
 $main-fontFamily: 'Roboto Condensed';
 $tags-fontFamily: 'BADABB';
 @font-face {
@@ -8,6 +9,7 @@ $tags-fontFamily: 'BADABB';
 	src: url('../fonts/BADABB.eot');
 	src: local('BADABB'), url('../fonts/BADABB.woff') format('woff'), url('../fonts/BADABB.ttf') format('truetype');
 }
+
 
 /* General styles */
 
@@ -107,7 +109,7 @@ body {
   background-color: #343a40;
   color: #fff;
   text-align: center;
-  font-family: $tags-fontFamily;  
+  font-family: $tags-fontFamily;
   font-size: 1.8rem;
   line-height: 1.5;
   border-radius: 50%;
@@ -150,19 +152,145 @@ body {
 	margin-top: 2.5em;
 }
 
+/* Custom page gallery */
+
+.gallery-search-input,
+.input-group-text,
+.generator-input {
+  border-radius: 25px;
+  border: 2px solid #000;
+  padding-left: 24px;
+  color: #000;
+}
+
+.generator-input:focus {
+  color: #000;
+}
+
+.generator-input::placeholder,
+.generator-input::-moz-placeholder,
+.generator-input::-webkit-input-placeholder {
+  color: #000;
+}
+
+.generator-controls {
+  max-width: 600px;
+}
+
+.input-group-text {
+  background: #000;
+  color: white;
+  padding: 0 32px;
+}
+
+.gallery-filter-btn, .tag {
+  background: white;
+  border-right: 1px solid #000;
+  padding: 0 16px;
+  list-style: none;
+}
+
+@media screen and (min-width: 992px) {
+  .input-group {
+    width: 80%;
+  }
+}
+
+.tag:first-child {
+  padding: 0 16px 0 0;
+}
+
+.gallery-filter-btn:last-child,
+.tag:last-child {
+  border-right: none;
+}
+
+.gallery-filter-btn:hover {
+  cursor: pointer;
+}
+
+.filter-strike:hover {
+  position: relative;
+}
+
+.filter-strike:hover::after {
+  content: '';
+  border-bottom: 10px solid $memezingaYellow;
+  opacity: 0.9;
+  position: absolute;
+  left: 0;
+  top: 60%;
+  width: 100%;
+}
+
+.card {
+  border: none;
+}
+
+.card-img {
+  border-radius: 0;
+}
+
+.meme-name,
+.generator-meme-name {
+  font-family: $tags-fontFamily;
+  font-size: 2em;
+  color: #000;
+}
+
+.meme-name {
+  text-align: center;
+  padding-top: 40%;
+}
+
+.meme-name:hover {
+  text-shadow: 4px 4px 0 rgba($color: $memezingaYellow, $alpha: 1);
+}
+
+.generator-card-ovl {
+  opacity: 0;
+  min-height: 300px;
+}
+
+.generator-card-ovl:hover {
+  opacity: 1;
+  background: rgba($color: #fff, $alpha: 0.7);
+  border: 2px solid #000;
+}
+
+/* Custom meme generator page */
+
+.generator-color-text {
+  width: 80px;
+  padding-top:  10px;
+}
+
+.generator-color-picker {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  border: 2px solid #000;
+  background: white;
+}
+
+.generator-btn {
+  background-color: #000;
+  color: white;
+}
 
 /* Custom page footer */
+
 .main-footer {
   left: 0;
   bottom: 0;
   width: 100vw;
-	background-color: #333;
-	color: white;
-	padding: 20px;
-	p {
-		margin-top: 16px;
-		margin-right: 10px;
-	}
+  background-color: #333;
+  color: white;
+  padding: 20px;
+  p {
+    margin-top: 16px;
+    margin-right: 10px;
+  }
 }
 
 .footer-flexObj {
