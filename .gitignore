@@ -12,3 +12,6 @@ Thumbs.db
 
 # dotenv environment variables file
 .env
+
+#vsCode
+.vsCode
