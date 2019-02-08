@@ -34,12 +34,21 @@
     </div>
   </header>
   <div class="col-lg-10 mx-auto">
-    <div class="box"></div>
+    <div class="steps-box">
+      <span class="dot-elem">1</span>
+      <span class="dot-elem">2</span>
+      <span class="dot-elem">3</span>
+    </div>
+    <div class="description">
+      <p class="special">Search and choose</p>
+      <p class="special">Be creative!</p>
+      <p class="special">Download!</p>
+    </div>
   </div>
   <main class="main-section">
     <section class="container-fluid d-flex flex-column flex-md-row justify-content-center mt-5 mb-5">
       <div class="mb-4 mr-5">
-        <img src="https://via.placeholder.com/400" alt="" />
+        <img src="https://via.placeholder.com/400" class="img-fluid" alt="" />
       </div>
       <div class="flex-grow-1 generator-controls">
         <h3 class="generator-meme-name">Disaster Girl</h3>
@@ -57,9 +66,13 @@
           <input type="text" class="form-control generator-input" placeholder="TEXTO INFERIOR" aria-label="bottom text"
             aria-describedby="inputGroup">
         </div>
-        <div class="mb-4">
-          <img src="./images/color-text_icon.svg" class="generator-color-text" alt="Color text">
-          <button type="button" class="generator-color-picker"></button>
+        <div class="mb-4 generator-buttons">
+          <div>
+            <img src="./images/color-text_icon.svg" class="generator-color-text" alt="Color text">
+          </div>
+          <div class="btn-wrapper">
+            <button type="button" class="generator-color-picker"></button>
+          </div>
         </div>
         <button type="button" class="btn generator-btn btn-sm">CREAR</button>
       </div>
