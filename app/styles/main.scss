@@ -177,6 +177,16 @@ body {
   max-width: 600px;
 }
 
+.generator-buttons {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+
+.btn-wrapper {
+  padding: 8px 0 0 0;
+}
+
 .input-group-text {
   background: #000;
   color: white;
@@ -263,6 +273,10 @@ body {
 .generator-color-text {
   width: 80px;
   padding-top:  10px;
+}
+
+.btn-wrapper {
+  padding: 8px 0 0 0;
 }
 
 .generator-color-picker {
