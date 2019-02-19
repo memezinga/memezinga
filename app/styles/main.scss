@@ -2,7 +2,6 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
 $memezingaRed: #e23535;
 $memezingaYellow: #fef851;
-$fictiziaColor: #00ACA2;
 $main-fontFamily: 'Roboto Condensed';
 $tags-fontFamily: 'BADABB';
 $navbar-dark: #000;
@@ -128,6 +127,19 @@ body {
    display: inline-block;
 }
 
+.current-step {
+   background-color: $memezingaYellow;
+   color: black;
+   border: 1px solid black;
+}
+
+.clickable-step:hover {
+   background-color: $memezingaYellow;
+   color: black;
+   border: 1px solid black;
+   cursor: pointer;
+}
+
 .description {
    display: flex;
    justify-content: space-between;
@@ -211,6 +223,10 @@ body {
    border-right: 1px solid #000;
    padding: 0 16px;
    list-style: none;
+}
+
+.meme-gallery-item {
+   cursor: pointer;
 }
 
 @media screen and (min-width: $break-large) {
@@ -301,8 +317,8 @@ body {
    background: white;
 }
 
-.generator-btn {
-   background-color: #000;
+.btn-danger {
+   background-color: $memezingaRed;
    color: white;
 }
 
