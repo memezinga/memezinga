@@ -12,6 +12,44 @@ window.addEventListener('scroll', function(event) {
     }
 });
 
+// Login
+
+var loginSltr = document.getElementById("login")
+var logoutSltr = document.getElementById("logout")
+
+var auth = firebase.auth();
+var provider = new firebase.auth.GithubAuthProvider();
+
+loginSltr.addEventListener("click", login)
+logoutSltr.addEventListener("click", logout)
+
+auth.onAuthStateChanged(toggleLogin);
+
+function toggleLogin(user){
+    if (user) {
+      // User signed in!
+      logoutSltr.querySelector("img").src = user.photoURL;
+      logoutSltr.style.display = "block";
+      loginSltr.style.display = "none";
+    } else {
+      // User logged out
+      logoutSltr.style.display = "none";
+      loginSltr.style.display = "block";
+    }
+}
+
+function logout () {
+  // return promise!
+  return auth.signOut()
+}
+
+function login (){
+  // return promise!
+  return auth.signInWithPopup(provider)
+}
+
+
+
 // Router
 var container = document.getElementById("main-wrapper");
 

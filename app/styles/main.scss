@@ -61,6 +61,16 @@ body {
    margin-right: 13px;
 }
 
+#logout {
+   display:none;
+   img {
+      border-radius:50%;
+      max-height: 25px;
+      max-width: 25px;
+      margin-right: 13px;
+   }
+}
+
 .navbar-brand:hover {
    color: $memezingaYellow;
 }
