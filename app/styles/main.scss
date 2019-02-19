@@ -7,6 +7,8 @@ $main-fontFamily: 'Roboto Condensed';
 $tags-fontFamily: 'BADABB';
 $navbar-dark: #000;
 $break-small: 575.98px;
+$break-medium: 768px;
+$break-large: 992px;
 @font-face {
 	font-family: 'BADABB';
 	src: url('../fonts/BADABB.eot');
@@ -204,7 +206,7 @@ body {
   list-style: none;
 }
 
-@media screen and (min-width: 992px) {
+@media screen and (min-width: $break-large) {
   .input-group {
     width: 80%;
   }
@@ -315,7 +317,7 @@ body {
   padding: 0 50px;
 }
 
-@media screen and (max-width: 575.98px){
+@media screen and (max-width: $break-small){
   .footer-flexObj {
      flex-direction : column;
   }
@@ -324,7 +326,7 @@ body {
 
 /* Customize container */
 
-@media (min-width: 48em) {
+@media (min-width: $break-medium) {
 	.container {
 		max-width: 46rem;
 	}
@@ -336,7 +338,7 @@ body {
 
 /* Responsive: Portrait tablets and up */
 
-@media screen and (min-width: 48em) {
+@media screen and (min-width: $break-medium) {
 	/* Remove the padding we set earlier */
 	.header,
 	.marketing,
