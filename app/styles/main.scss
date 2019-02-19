@@ -1,9 +1,12 @@
 //Google Fonts
 @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
+
 $memezingaRed: #e23535;
 $memezingaYellow: #fef851;
 $main-fontFamily: 'Roboto Condensed';
 $tags-fontFamily: 'BADABB';
+$navbar-dark: #000;
+$break-small: 575.98px;
 @font-face {
 	font-family: 'BADABB';
 	src: url('../fonts/BADABB.eot');
@@ -26,12 +29,12 @@ body {
 /* Navbar change color effect css*/
 
 .navbar-default{
-  transition:500ms ease;
-  background:transparent;
+  transition: 500ms ease;
+  background: transparent;
 }
 
 .navbar-default.scrolled{
-  background: #000;
+  background: $navbar-dark;
 }
 
 
@@ -56,7 +59,7 @@ body {
 	margin-right: 13px;
 }
 
-@media screen and (max-width: 575.98px){
+@media screen and (max-width: $break-small){
   .navbar {
     justify-content: space-between;
     padding: 20px 25px;
