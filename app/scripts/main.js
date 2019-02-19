@@ -23,19 +23,21 @@ var router = new Navigo(root, useHash, hash);
 router
   .on({
     'generator/:id': function () {
-      setContent('Generator');
+      setContent(generatorTpl());
     },
     'gallery': function () {
-      setContent('Gallery');
+      setContent(galleryTpl());
     },
     '/': function () {
-      setContent('Home');
+      setContent(homeTpl());
     },
     'download/:id': function () {
-      setContent('Download');
+      setContent(downloadTpl());
     }
   })
-  //.notFound();
+  .notFound(function() {
+    router.navigate("/");
+  })
   .resolve();
   
 function setContent(name){

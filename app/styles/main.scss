@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
 $memezingaRed: #e23535;
 $memezingaYellow: #fef851;
+$fictiziaColor: #00ACA2;
 $main-fontFamily: 'Roboto Condensed';
 $tags-fontFamily: 'BADABB';
 $navbar-dark: #000;
@@ -59,6 +60,10 @@ body {
 
 .btn i {
    margin-right: 13px;
+}
+
+.navbar-brand:hover {
+   color: $memezingaYellow;
 }
 
 @media screen and (max-width: $break-small) {
