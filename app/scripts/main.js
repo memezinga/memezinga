@@ -72,9 +72,13 @@ router
           router.updatePageLinks();
         });
     },
-    'generator/:id': function () {
-      setContent(generatorTpl());
-      router.updatePageLinks();
+    'generator/:id': function (params) {
+      const memeId = params.id;
+      memesRef.child(memeId).once('value', snapshot =>{
+        const meme = snapshot.val();
+          setContent(generatorTpl(meme));
+          router.updatePageLinks();
+      });
     },
     'download/:id': function () {
       setContent(downloadTpl());

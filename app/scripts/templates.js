@@ -28,8 +28,9 @@ function homeTpl () {
 
 function galleryTpl (memes){
     function memeTpl (meme){
+        const url = `generator/${meme.id}?topText=${meme.topText}&bottomText=${meme.bottomText}`
         return `                
-            <div class="mb-4 meme-gallery-item" href="generator/${meme.id}" data-navigo>
+            <div class="mb-4 meme-gallery-item" href="${url}" data-navigo>
                 <div class="card bg-dark text-white">
                   <div class="meme-img" style="background-image:url('${meme.img_src}')"></div>                
                     <p class="card-img-overlay generator-card-ovl meme-name">${meme.name}</p>
@@ -83,7 +84,10 @@ function galleryTpl (memes){
 }
 
 
-function generatorTpl (){
+function generatorTpl (meme){
+    function tagTpl (tag){
+        return `<li class="tag d-inline">${tag}</li>`
+    }
    return `
          <div class="col-lg-10 mx-auto">
             <div class="steps-box">
@@ -100,15 +104,12 @@ function generatorTpl (){
         <main class="main-section">
             <section class="container-fluid d-flex flex-column flex-md-row justify-content-center mt-5 mb-5">
                 <div class="mb-4 mr-5">
-                    <img src="https://via.placeholder.com/400" class="img-fluid" alt="" />
+                    <div class="meme-img-generator" style="background-image:url('${meme.img_src}')"></div>                
                 </div>
                 <div class="flex-grow-1 generator-controls">
-                    <h3 class="generator-meme-name">Disaster Girl</h3>
+                    <h3 class="generator-meme-name">${meme.name}</h3>
                     <ul>
-                        <li class="tag d-inline">tag 1</li>
-                        <li class="tag d-inline">tag 2</li>
-                        <li class="tag d-inline">tag 3</li>
-                        <li class="tag d-inline">tag 4</li>
+                        ${meme.tags.map(tagTpl).join("")}
                     </ul>
                     <div class="input-group mb-3">
                         <input type="text" class="form-control generator-input" placeholder="TEXTO SUPERIOR" aria-label="top text"

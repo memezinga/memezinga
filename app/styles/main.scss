@@ -318,6 +318,14 @@ body {
 
 /* Custom meme generator page */
 
+.meme-img-generator {
+      width: 400px;
+      height: 400px;
+      background-position: 50% 50%;
+      background-repeat: no-repeat;
+      background-size: cover;
+}
+
 .generator-color-text {
    width: 80px;
    padding-top: 10px;
@@ -353,6 +361,13 @@ body {
    p {
       margin-top: 16px;
       margin-right: 10px;
+   }
+   a {
+      color: white;
+   }
+   a:hover {
+      color: $memezingaYellow;
+      text-decoration: none;
    }
 }
 
