@@ -19,6 +19,7 @@ var logoutSltr = document.getElementById("logout")
 
 var auth = firebase.auth();
 var provider = new firebase.auth.GithubAuthProvider();
+var memesRef = firebase.database().ref(`memes`);
 
 loginSltr.addEventListener("click", login)
 logoutSltr.addEventListener("click", logout)
@@ -65,8 +66,11 @@ router
       router.updatePageLinks();
     },
     'gallery': function () {
-      setContent(galleryTpl());
-      router.updatePageLinks();
+        memesRef.orderByKey().limitToFirst(20).once('value', (snapshot) => {
+          const memes = Object.values(snapshot.val());
+          setContent(galleryTpl(memes));
+          router.updatePageLinks();
+        });
     },
     'generator/:id': function () {
       setContent(generatorTpl());
@@ -82,6 +86,6 @@ router
   })
   .resolve();
   
-function setContent(name){
-    container.innerHTML = name;
+function setContent(template){
+    container.innerHTML = template;
 };

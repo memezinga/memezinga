@@ -26,8 +26,17 @@ function homeTpl () {
          </main>`;
 }
 
-function galleryTpl (){
-   return `
+function galleryTpl (memes){
+    function memeTpl (meme){
+        return `                
+            <div class="mb-4 meme-gallery-item" href="generator/${meme.id}" data-navigo>
+                <div class="card bg-dark text-white">
+                  <div class="meme-img" style="background-image:url('${meme.img_src}')"></div>                
+                    <p class="card-img-overlay generator-card-ovl meme-name">${meme.name}</p>
+                </div>
+            </div>`;
+    }
+    return `
            <div class="col-lg-10 mx-auto">
             <div class="steps-box">
                 <span class="dot-elem current-step">1</span>
@@ -67,102 +76,7 @@ function galleryTpl (){
             </section>
             <section class="mt-5">
                 <div class="container-fluid d-flex flex-wrap justify-content-around">
-                    <div class="mb-4 meme-gallery-item" href="generator/123" data-navigo>
-                        <div class="card bg-dark text-white">
-                            <img src="https://via.placeholder.com/300" class="card-img img-fluid" alt="" />
-                            <p class="card-img-overlay generator-card-ovl meme-name">
-                                Disaster girl
-                            </p>
-                        </div>
-                    </div>
-                    <div class="mb-4 meme-gallery-item" href="generator/123" data-navigo>
-                        <div class="card bg-dark text-white">
-                            <img src="https://via.placeholder.com/300" class="card-img img-fluid" alt="" />
-                            <p class="card-img-overlay generator-card-ovl meme-name">
-                                Disaster girl
-                            </p>
-                        </div>
-                    </div>
-                    <div class="mb-4 meme-gallery-item" href="generator/123" data-navigo>
-                        <div class="card bg-dark text-white">
-                            <img src="https://via.placeholder.com/300" class="card-img img-fluid" alt="" />
-                            <p class="card-img-overlay generator-card-ovl meme-name">
-                                Disaster girl
-                            </p>
-                        </div>
-                    </div>
-                    <div class="mb-4 meme-gallery-item" href="generator/123" data-navigo>
-                        <div class="card bg-dark text-white">
-                            <img src="https://via.placeholder.com/300" class="card-img img-fluid" alt="" />
-                            <p class="card-img-overlay generator-card-ovl meme-name">
-                                Disaster girl
-                            </p>
-                        </div>
-                    </div>
-                    <div class="mb-4 meme-gallery-item" href="generator/123" data-navigo>
-                        <div class="card bg-dark text-white">
-                            <img src="https://via.placeholder.com/300" class="card-img img-fluid" alt="" />
-                            <p class="card-img-overlay generator-card-ovl meme-name">
-                                Disaster girl
-                            </p>
-                        </div>
-                    </div>
-                    <div class="mb-4 meme-gallery-item" href="generator/123" data-navigo>
-                        <div class="card bg-dark text-white">
-                            <img src="https://via.placeholder.com/300" class="card-img img-fluid" alt="" />
-                            <p class="card-img-overlay generator-card-ovl meme-name">
-                                Disaster girl
-                            </p>
-                        </div>
-                    </div>
-                    <div class="mb-4 meme-gallery-item" href="generator/123" data-navigo>
-                        <div class="card bg-dark text-white">
-                            <img src="https://via.placeholder.com/300" class="card-img img-fluid" alt="" />
-                            <p class="card-img-overlay generator-card-ovl meme-name">
-                                Disaster girl
-                            </p>
-                        </div>
-                    </div>
-                    <div class="mb-4 meme-gallery-item" href="generator/123" data-navigo>
-                        <div class="card bg-dark text-white">
-                            <img src="https://via.placeholder.com/300" class="card-img img-fluid" alt="" />
-                            <p class="card-img-overlay generator-card-ovl meme-name">
-                                Disaster girl
-                            </p>
-                        </div>
-                    </div>
-                    <div class="mb-4 meme-gallery-item" href="generator/123" data-navigo>
-                        <div class="card bg-dark text-white">
-                            <img src="https://via.placeholder.com/300" class="card-img img-fluid" alt="" />
-                            <p class="card-img-overlay generator-card-ovl meme-name">
-                                Disaster girl
-                            </p>
-                        </div>
-                    </div>
-                    <div class="mb-4 meme-gallery-item" href="generator/123" data-navigo>
-                        <div class="card bg-dark text-white">
-                            <img src="https://via.placeholder.com/300" class="card-img img-fluid" alt="" />
-                            <p class="card-img-overlay generator-card-ovl meme-name">
-                                Disaster girl
-                            </p>
-                        </div>
-                    </div>
-                    <div class="mb-4 meme-gallery-item" href="generator/123" data-navigo>
-                        <div class="card bg-dark text-white">
-                            <img src="https://via.placeholder.com/300" class="card-img img-fluid" alt="" />
-                            <p class="card-img-overlay generator-card-ovl meme-name">
-                                Disaster girl
-                            </p>
-                        </div>
-                    </div>
-                    <div class="mb-4 meme-gallery-item" href="generator/123" data-navigo>
-                        <div class="card bg-dark text-white">
-                            <img src="https://via.placeholder.com/300" class="card-img img-fluid" alt="" />
-                            <p class="card-img-overlay generator-card-ovl meme-name">
-                                Disaster girl
-                            </p>
-                        </div>
-                    </div>
+                    ${memes.map(memeTpl).join("")};
                 </div>
             </section>
         </main>`;
