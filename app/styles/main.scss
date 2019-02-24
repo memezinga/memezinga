@@ -9,404 +9,440 @@ $break-small: 575.98px;
 $break-medium: 768px;
 $break-large: 992px;
 @font-face {
-   font-family: 'BADABB';
-   src: url('../fonts/BADABB.eot');
-   src: local('BADABB'), url('../fonts/BADABB.woff') format('woff'), url('../fonts/BADABB.ttf') format('truetype');
+  font-family: 'BADABB';
+  src: url('../fonts/BADABB.eot');
+  src: local('BADABB'), url('../fonts/BADABB.woff') format('woff'),
+    url('../fonts/BADABB.ttf') format('truetype');
 }
-
 
 /* General styles */
 
 * {
-   box-sizing: border-box;
-   margin: 0;
-   padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-   font-family: $main-fontFamily, sans-serif;
+  font-family: $main-fontFamily, sans-serif;
 }
-
 
 /* Navbar change color effect css*/
 
 .navbar-default {
-   transition: 500ms ease;
-   background: transparent;
+  transition: 500ms ease;
+  background: transparent;
 }
 
 .navbar-default.scrolled {
-   background: $navbar-dark;
+  background: $navbar-dark;
 }
-
 
 /* Custom page header */
 
 .navbar {
-   font-family: $main-fontFamily;
-   padding: 20px 50px;
+  font-family: $main-fontFamily;
+  padding: 20px 50px;
 }
 
 .navbar a {
-   color: white;
+  color: white;
 }
 
 .btn {
-   border-radius: 25px;
-   padding: 5px 30px;
-   text-transform: uppercase;
+  border-radius: 25px;
+  padding: 5px 30px;
+  text-transform: uppercase;
 }
 
 .btn i {
-   margin-right: 13px;
+  margin-right: 13px;
 }
 
 #logout {
-   display:none;
-   img {
-      border-radius:50%;
-      max-height: 25px;
-      max-width: 25px;
-      margin-right: 13px;
-   }
+  display: none;
+  img {
+    border-radius: 50%;
+    max-height: 25px;
+    max-width: 25px;
+    margin-right: 13px;
+  }
 }
 
 .navbar-brand:hover {
-   color: $memezingaYellow;
+  color: $memezingaYellow;
 }
 
 @media screen and (max-width: $break-small) {
-   .navbar {
-      justify-content: space-between;
-      padding: 20px 25px;
-   }
-   .navbar-brand {
-      font-size: 1rem;
-   }
-   .nav-link {
-      font-size: 0.8rem;
-   }
+  .navbar {
+    justify-content: space-between;
+    padding: 20px 25px;
+  }
+  .navbar-brand {
+    font-size: 1rem;
+  }
+  .nav-link {
+    font-size: 0.8rem;
+  }
 }
 
 .header-section {
-   background: url(../images/bg_header.jpg);
-   background-repeat: no-repeat;
-   background-size: cover;
-   background-attachment: fixed;
-   max-width: 100%;
-   height: 80%;
+  background: url(../images/bg_header.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  max-width: 100%;
+  height: 80%;
 }
 
 .memezinga-logo {
-   max-width: 100%;
-   margin-top: 80px;
+  max-width: 100%;
+  margin-top: 80px;
 }
 
 .steps-box {
-   display: flex;
-   justify-content: space-between;
-   width: 80%;
-   height: 42px;
-   position: relative;
-   margin: auto;
-   margin-top: -21px;
-   &:before {
-      content: "";
-      position: absolute;
-      display: block;
-      width: 100%;
-      height: 4px;
-      border-top: 4px dashed black;
-      top: 50%;
-      transform: translateY(-21%);
-   }
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  height: 42px;
+  position: relative;
+  margin: auto;
+  margin-top: -21px;
+  &:before {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 4px;
+    border-top: 4px dashed black;
+    top: 50%;
+    transform: translateY(-21%);
+  }
 }
 
 .dot-elem {
-   height: 45px;
-   width: 45px;
-   z-index: 100;
-   background-color: #343a40;
-   color: #fff;
-   text-align: center;
-   font-family: $tags-fontFamily;
-   font-size: 1.8rem;
-   line-height: 1.5;
-   border-radius: 50%;
-   border: 1px solid white;
-   display: inline-block;
+  height: 45px;
+  width: 45px;
+  z-index: 100;
+  background-color: #343a40;
+  color: #fff;
+  text-align: center;
+  font-family: $tags-fontFamily;
+  font-size: 1.8rem;
+  line-height: 1.5;
+  border-radius: 50%;
+  border: 1px solid white;
+  display: inline-block;
 }
 
 .current-step {
-   background-color: $memezingaYellow;
-   color: black;
-   border: 1px solid black;
+  background-color: $memezingaYellow;
+  color: black;
+  border: 1px solid black;
 }
 
 .clickable-step:hover {
-   background-color: $memezingaYellow;
-   color: black;
-   border: 1px solid black;
-   cursor: pointer;
+  background-color: $memezingaYellow;
+  color: black;
+  border: 1px solid black;
+  cursor: pointer;
 }
 
 .description {
-   display: flex;
-   justify-content: space-between;
-   width: 85%;
-   height: 42px;
-   margin: auto;
-   margin-top: 21px;
-   font-family: $main-fontFamily;
-   .special {
-      margin-right: 25px;
-   }
+  display: flex;
+  justify-content: space-between;
+  width: 85%;
+  height: 42px;
+  margin: auto;
+  margin-top: 21px;
+  font-family: $main-fontFamily;
+  .special {
+    margin-right: 25px;
+  }
 }
 
 .home-main-section {
-   margin-bottom: 20em;
+  margin-bottom: 20em;
 }
 
 .main-title {
-   font-family: $tags-fontFamily;
-   font-size: 4em;
+  font-family: $tags-fontFamily;
+  font-size: 4em;
 }
 
 .main-paragraph {
-   font-family: $main-fontFamily;
+  font-family: $main-fontFamily;
 }
 
 .img-placeholder {
-   margin-top: 80px;
+  margin-top: 80px;
 }
 
 .btn-danger {
-   background-color: $memezingaRed;
-   margin-top: 2.5em;
+  background-color: $memezingaRed;
+  margin-top: 2.5em;
 }
-
 
 /* Custom page gallery */
 
 .gallery-search-input,
 .input-group-text,
 .generator-input {
-   border-radius: 25px;
-   border: 2px solid #000;
-   padding-left: 24px;
-   color: #000;
+  border-radius: 25px;
+  border: 2px solid #000;
+  padding-left: 24px;
+  color: #000;
 }
 
 .generator-input:focus {
-   color: #000;
+  color: #000;
 }
 
 .generator-input::placeholder,
 .generator-input::-moz-placeholder,
 .generator-input::-webkit-input-placeholder {
-   color: #000;
+  color: #000;
 }
 
 .generator-controls {
-   max-width: 600px;
+  max-width: 600px;
 }
 
 .generator-buttons {
-   display: flex;
-   flex-flow: row nowrap;
-   align-items: center;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
 }
 
 .btn-wrapper {
-   padding: 8px 0 0 0;
+  padding: 8px 0 0 0;
 }
 
 .input-group-text {
-   background: #000;
-   color: white;
-   padding: 0 32px;
+  background: #000;
+  color: white;
+  padding: 0 32px;
 }
 
 .gallery-filter-btn,
 .tag {
-   background: white;
-   border-right: 1px solid #000;
-   padding: 0 16px;
-   list-style: none;
+  background: white;
+  border-right: 1px solid #000;
+  padding: 0 16px;
+  list-style: none;
 }
 
 .meme-gallery-item {
-   cursor: pointer;
+  cursor: pointer;
 }
 
 .meme-gallery-item .meme-img {
-   width: 300px;
-   height: 300px;
-   background-position: 50% 50%;
-   background-repeat: no-repeat;
-   background-size: cover;
+  width: 300px;
+  height: 300px;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 @media screen and (min-width: $break-large) {
-   .input-group {
-      width: 80%;
-   }
+  .input-group {
+    width: 80%;
+  }
 }
 
 .tag:first-child {
-   padding: 0 16px 0 0;
+  padding: 0 16px 0 0;
 }
 
 .gallery-filter-btn:last-child,
 .tag:last-child {
-   border-right: none;
+  border-right: none;
 }
 
 .gallery-filter-btn:hover {
-   cursor: pointer;
+  cursor: pointer;
 }
 
 .filter-strike:hover {
-   position: relative;
+  position: relative;
 }
 
 .filter-strike:hover::after {
-   content: '';
-   border-bottom: 10px solid $memezingaYellow;
-   opacity: 0.9;
-   position: absolute;
-   left: 0;
-   top: 60%;
-   width: 100%;
+  content: '';
+  border-bottom: 10px solid $memezingaYellow;
+  opacity: 0.9;
+  position: absolute;
+  left: 0;
+  top: 60%;
+  width: 100%;
 }
 
 .card {
-   border: none;
+  border: none;
 }
 
 .card-img {
-   border-radius: 0;
+  border-radius: 0;
 }
 
 .meme-name,
 .generator-meme-name {
-   font-family: $tags-fontFamily;
-   font-size: 2em;
-   color: #000;
+  font-family: $tags-fontFamily;
+  font-size: 2em;
+  color: #000;
 }
 
 .meme-name {
-   text-align: center;
-   padding-top: 40%;
+  text-align: center;
+  padding-top: 40%;
 }
 
 .meme-name:hover {
-   text-shadow: 4px 4px 0 rgba($color: $memezingaYellow, $alpha: 1);
+  text-shadow: 4px 4px 0 rgba($color: $memezingaYellow, $alpha: 1);
 }
 
 .generator-card-ovl {
-   opacity: 0;
-   min-height: 300px;
+  opacity: 0;
+  min-height: 300px;
 }
 
 .generator-card-ovl:hover {
-   opacity: 1;
-   background: rgba($color: #fff, $alpha: 0.7);
-   border: 2px solid #000;
+  opacity: 1;
+  background: rgba($color: #fff, $alpha: 0.7);
+  border: 2px solid #000;
 }
-
 
 /* Custom meme generator page */
 
 .meme-img-generator {
-      width: 400px;
-      height: 400px;
-      background-position: 50% 50%;
-      background-repeat: no-repeat;
-      background-size: cover;
+  width: 400px;
+  height: 400px;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-.generator-color-text {
-   width: 80px;
-   padding-top: 10px;
+.topPreviewText,
+.bottomPreviewText {
+  color: #fff;
+  text-shadow: #000 -2px 0px, #000 0px 2px, #000 2px 0px, #000 0px -2px;
+}
+
+.generator-fontFamily {
+  width: 80px;
+  padding-top: 10px;
 }
 
 .btn-wrapper {
-   padding: 8px 0 0 0;
+  padding: 8px 0 0 0;
 }
 
 .generator-color-picker {
-   height: 40px;
-   width: 40px;
-   border-radius: 50%;
-   border: 2px solid #000;
-   background: white;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  border: 2px solid #000;
+  background: white;
 }
 
 .btn-danger {
-   background-color: $memezingaRed;
-   color: white;
+  background-color: $memezingaRed;
+  color: white;
 }
 
+.memeContainer {
+  position: relative;
+}
+
+.meme-preview {
+  z-index: 0;
+}
+
+.previewText {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  height: 400px;
+  width: 400px;
+  padding: 8px;
+  line-height: 1;
+}
+
+.topPreviewText,
+.bottomPreviewText {
+  margin: 0 auto;
+  padding: 8px;
+  font-size: 50px;
+  font-family: $tags-fontFamily, Haettenschweiler, 'Arial Narrow Bold',
+    sans-serif;
+}
+
+@media screen and (max-width: $break-small) {
+  .meme-img-generator,
+  .previewText {
+    width: 320px;
+    height: 320px;
+  }
+}
 
 /* Custom page footer */
 
 .main-footer {
-   left: 0;
-   bottom: 0;
-   width: 100vw;
-   background-color: #333;
-   color: white;
-   padding: 20px;
-   p {
-      margin-top: 16px;
-      margin-right: 10px;
-   }
-   a {
-      color: white;
-   }
-   a:hover {
-      color: $memezingaYellow;
-      text-decoration: none;
-   }
+  left: 0;
+  bottom: 0;
+  width: 100vw;
+  background-color: #333;
+  color: white;
+  padding: 20px;
+  p {
+    margin-top: 16px;
+    margin-right: 10px;
+  }
+  a {
+    color: white;
+  }
+  a:hover {
+    color: $memezingaYellow;
+    text-decoration: none;
+  }
 }
 
 .footer_item {
-   padding: 0 50px;
+  padding: 0 50px;
 }
 
 @media screen and (max-width: $break-small) {
-   .footer_item {
-      flex-direction: column;
-   }
+  .footer_item {
+    flex-direction: column;
+  }
 }
-
 
 /* Customize container */
 
 @media (min-width: $break-medium) {
-   .container {
-      max-width: 46rem;
-   }
+  .container {
+    max-width: 46rem;
+  }
 }
 
-.container-narrow>hr {
-   margin: 2rem 0;
+.container-narrow > hr {
+  margin: 2rem 0;
 }
-
 
 /* Responsive: Portrait tablets and up */
 
 @media screen and (min-width: $break-medium) {
-   /* Remove the padding we set earlier */
-   .header,
-   .marketing,
-   .footer {
-      padding-right: 0;
-      padding-left: 0;
-   }
-   /* Space out the masthead */
-   .header {
-      margin-bottom: 2rem;
-   }
+  /* Remove the padding we set earlier */
+  .header,
+  .marketing,
+  .footer {
+    padding-right: 0;
+    padding-left: 0;
+  }
+  /* Space out the masthead */
+  .header {
+    margin-bottom: 2rem;
+  }
 }
