@@ -78,6 +78,7 @@ router
         const meme = snapshot.val();
           setContent(generatorTpl(meme));
           router.updatePageLinks();
+          window.generator.init();
       });
     },
     'download/:id': function () {
@@ -89,7 +90,7 @@ router
     router.navigate("/");
   })
   .resolve();
-  
+
 function setContent(template){
     container.innerHTML = template;
 };

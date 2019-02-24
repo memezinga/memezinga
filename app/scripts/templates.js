@@ -1,5 +1,5 @@
-function homeTpl () {
-    return `
+function homeTpl() {
+  return `
         <div class="col-lg-10 mx-auto">
             <div class="steps-box"></div>
          </div>
@@ -26,18 +26,24 @@ function homeTpl () {
          </main>`;
 }
 
-function galleryTpl (memes){
-    function memeTpl (meme){
-        const url = `generator/${meme.id}?topText=${meme.topText}&bottomText=${meme.bottomText}`
-        return `                
+function galleryTpl(memes) {
+  function memeTpl(meme) {
+    const url = `generator/${meme.id}?topText=${meme.topText}&bottomText=${
+      meme.bottomText
+    }`;
+    return `
             <div class="mb-4 meme-gallery-item" href="${url}" data-navigo>
                 <div class="card bg-dark text-white">
-                  <div class="meme-img" style="background-image:url('${meme.img_src}')"></div>                
-                    <p class="card-img-overlay generator-card-ovl meme-name">${meme.name}</p>
+                  <div class="meme-img" style="background-image:url('${
+                    meme.img_src
+                  }')"></div>
+                    <p class="card-img-overlay generator-card-ovl meme-name">${
+                      meme.name
+                    }</p>
                 </div>
             </div>`;
-    }
-    return `
+  }
+  return `
            <div class="col-lg-10 mx-auto">
             <div class="steps-box">
                 <span class="dot-elem current-step">1</span>
@@ -77,18 +83,17 @@ function galleryTpl (memes){
             </section>
             <section class="mt-5">
                 <div class="container-fluid d-flex flex-wrap justify-content-around">
-                    ${memes.map(memeTpl).join("")};
+                    ${memes.map(memeTpl).join('')};
                 </div>
             </section>
         </main>`;
 }
 
-
-function generatorTpl (meme){
-    function tagTpl (tag){
-        return `<li class="tag d-inline">${tag}</li>`
-    }
-   return `
+function generatorTpl(meme) {
+  function tagTpl(tag) {
+    return `<li class="tag d-inline">${tag}</li>`;
+  }
+  return `
          <div class="col-lg-10 mx-auto">
             <div class="steps-box">
                 <span class="dot-elem clickable-step" href="gallery" data-navigo>1</span>
@@ -103,28 +108,56 @@ function generatorTpl (meme){
         </div>
         <main class="main-section">
             <section class="container-fluid d-flex flex-column flex-md-row justify-content-center mt-5 mb-5">
-                <div class="mb-4 mr-5">
-                    <div class="meme-img-generator" style="background-image:url('${meme.img_src}')"></div>                
+                <div class="mb-4 mr-5 memeContainer">
+                    <div class="previewText">
+                      <span class="topPreviewText"></span>
+                      <span class="bottomPreviewText"></span>
+                    </div>
+                    <div class="meme-img-generator meme-preview" style="background-image:url('${
+                      meme.img_src
+                    }')"></div>
                 </div>
                 <div class="flex-grow-1 generator-controls">
                     <h3 class="generator-meme-name">${meme.name}</h3>
                     <ul>
-                        ${meme.tags.map(tagTpl).join("")}
+                        ${meme.tags.map(tagTpl).join('')}
                     </ul>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control generator-input" placeholder="TEXTO SUPERIOR" aria-label="top text"
-                            aria-describedby="inputGroup">
+                        <input
+                          type="text"
+                          name="topInput"
+                          minlength="1"
+                          maxlength="25"
+                          class="form-control generator-input topText"
+                          placeholder="TEXTO SUPERIOR"
+                          aria-label="top text"
+                          aria-describedby="inputGroup">
                     </div>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control generator-input" placeholder="TEXTO INFERIOR" aria-label="bottom text"
-                            aria-describedby="inputGroup">
+                        <input
+                          type="text"
+                          name="bottomInput"
+                          minlength="1"
+                          maxlength="25"
+                          class="form-control generator-input bottomText"
+                          placeholder="TEXTO INFERIOR"
+                          aria-label="bottom text"
+                          aria-describedby="inputGroup">
                     </div>
                     <div class="mb-4 generator-buttons">
-                        <div>
-                            <img src="./images/color-text_icon.svg" class="generator-color-text" alt="Color text">
+                        <div class="dropdown">
+                            <img src="./images/color-text_icon.svg" class="generator-fontFamily" alt="Color text"
+                              id="dropdownMenuButton"
+                              data-toggle="dropdown"
+                              aria-haspopup="true"
+                              aria-expanded="false" />
+                              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <button class="dropdown-item" data-id="impact">Impact look</button>
+                                <button class="dropdown-item active" data-id="badabd">Memezinga look</button>
+                            </div>
                         </div>
                         <div class="btn-wrapper">
-                            <button type="button" class="generator-color-picker"></button>
+                            <input type="color" value="#ffffff" class="generator-color-picker"></input>
                         </div>
                     </div>
                     <button type="button" class="btn btn-danger btn-sm" href="download/123" data-navigo>Crear</button>
@@ -133,9 +166,8 @@ function generatorTpl (meme){
         </main>`;
 }
 
-
-function downloadTpl(){
-   return `        
+function downloadTpl() {
+  return `
          <div class="col-lg-10 mx-auto">
             <div class="steps-box">
                 <span class="dot-elem clickable-step" href="gallery" data-navigo>1</span>
