@@ -158,7 +158,7 @@ function generatorTpl(meme) {
               <input type="color" value="#ffffff" class="generator-color-picker"></input>
             </div>
           </div>
-          <button type="button" class="btn btn-danger btn-sm createButton"data-id=${
+          <button type="button" class="btn btn-danger btn-sm createButton" data-id=${
             meme.id
           }>Crear</button>
         </div>
@@ -167,11 +167,17 @@ function generatorTpl(meme) {
 }
 
 function downloadTpl(selectedMeme) {
+  let regex = /\+/g;
+  let finalTopText = selectedMeme.topText.replace(regex, ' ');
+  let finalBtmText = selectedMeme.bottomText.replace(regex, ' ');
+  const url = `generator/${selectedMeme.id}?topText=${
+    selectedMeme.topText
+  }&bottomText=${selectedMeme.bottomText}`;
   return `
     <div class="col-lg-10 mx-auto">
       <div class="steps-box">
         <span class="dot-elem clickable-step" href="gallery" data-navigo>1</span>
-        <span class="dot-elem clickable-step" href="generator/123" data-navigo>2</span>
+        <span class="dot-elem clickable-step" href=${url} data-navigo>2</span>
         <span class="dot-elem current-step">3</span>
       </div>
       <div class="description">
@@ -183,13 +189,19 @@ function downloadTpl(selectedMeme) {
     <main class="home-main-section">
       <section class="container main-section">
         <div class="col-lg-8 mx-auto text-center">
+        <div id="finalMeme">
           <div class="previewText">
-            <span class="topPreviewText">${selectedMeme.topText}</span>
-            <span class="bottomPreviewText">${selectedMeme.bottomText}</span>
+            <span class="topPreviewText" style="font-size:${
+              selectedMeme.fontSizeTopText
+            }">${finalTopText}</span>
+            <span class="bottomPreviewText" style="font-size:${
+              selectedMeme.fontSizeBottomText
+            }">${finalBtmText}</span>
           </div>
           <div class="meme-img-generator meme-preview" style="background-image:url('${
-            selectedMeme.imgSrc
+            selectedMeme.imageUrl
           }')"></div>
+        </div>
           <button type="button" class="btn btn-danger">Download</button>
         </div>
       </section>
