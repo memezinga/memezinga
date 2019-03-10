@@ -173,6 +173,13 @@ function downloadTpl(selectedMeme) {
   const url = `generator/${selectedMeme.id}?topText=${
     selectedMeme.topText
   }&bottomText=${selectedMeme.bottomText}`;
+  const font = selectedMeme.selectedFontFamily;
+  const fontSizeTop = selectedMeme.fontSizeTopText;
+  const fontSizeBottom = selectedMeme.fontSizeBottomText;
+  const color = selectedMeme.selectedColor;
+  const topTextStyles = `font-size: ${fontSizeTop}px; font-family: ${font}; color: ${color};`;
+  const bottomTextStyles = `font-size: ${fontSizeBottom}px; font-family: ${font}; color: ${color};`;
+
   return `
     <div class="col-lg-10 mx-auto">
       <div class="steps-box">
@@ -189,20 +196,21 @@ function downloadTpl(selectedMeme) {
     <main class="home-main-section">
       <section class="container main-section">
         <div class="col-lg-8 mx-auto text-center">
-        <div id="finalMeme">
+        <div class="mb-4 mr-5 memeContainer">
           <div class="previewText">
-            <span class="topPreviewText" style="font-size:${
-              selectedMeme.fontSizeTopText
-            }">${finalTopText}</span>
-            <span class="bottomPreviewText" style="font-size:${
-              selectedMeme.fontSizeBottomText
-            }">${finalBtmText}</span>
+            <span class="topPreviewText" style="${topTextStyles}">
+              ${finalTopText}
+            </span>
+            <span class="bottomPreviewText" style="${bottomTextStyles}">
+              ${finalBtmText}
+            </span>
           </div>
-          <div class="meme-img-generator meme-preview" style="background-image:url('${
+          <img id="finalImg" class="meme-img-generator meme-preview" src='${
             selectedMeme.imageUrl
-          }')"></div>
-        </div>
-          <button type="button" class="btn btn-danger">Download</button>
+          }' alt="">
+          </div>
+          <canvas id="canvas" style="display: none;"></canvas>
+          <button type="button" class="btn btn-danger"><a id="downloadBtn" href=""  download="memezingaMeme.jpg">Download</a></button>
         </div>
       </section>
     </main>`;

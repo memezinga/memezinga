@@ -87,6 +87,7 @@ router
       selectedMeme.id = memeId;
       setContent(downloadTpl(selectedMeme));
       router.updatePageLinks();
+      downloadMeme(selectedMeme);
     }
   })
   .notFound(function() {
@@ -346,7 +347,7 @@ function generator(selectedMeme, query) {
 
 /**
  * Extracts key/value pairs from query params
- * @param {*} query
+ * @param {String} query url query params
  * @returns {Object} key/value pairs of query parameters
  */
 function transformQueryToPairs(query) {
@@ -357,4 +358,104 @@ function transformQueryToPairs(query) {
 
     return queryObj;
   }, {});
+}
+
+function downloadMeme(selectedMeme) {
+  const canvas = document.getElementById('canvas');
+
+  /**
+   * Draws the image and texts in the canvas element
+   * @param {Object} selectedMeme meme form the previous step
+   * @returns {void}
+   * @see #renderTopText
+   * @see #renderBottomText
+   */
+  function drawPreviewImageInCanvas(selectedMeme) {
+    const image = document.getElementById('finalImg');
+    const ctx = canvas.getContext('2d');
+
+    const topTextProperties = {
+      text: finalTopText,
+      fontFamily: selectedMeme.selectedFontFamily,
+      fontSize: selectedMeme.fontSizeTopText,
+      color: selectedMeme.selectedColor
+    };
+    const bottomTextProperties = {
+      text: finalBtmText,
+      fontFamily: selectedMeme.selectedFontFamily,
+      fontSize: selectedMeme.fontSizeBottomText,
+      color: selectedMeme.selectedColor
+    };
+
+    canvas.width = 400;
+    canvas.height = 400;
+    ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+    renderTopText(ctx, topTextProperties);
+    renderBottomText(ctx, bottomTextProperties);
+  }
+
+  /**
+   * Sets the top text properties in the canvas context
+   * @param {Object} ctx the canvas 2D context
+   * @param {Object} properties the properties from the url query params
+   * @returns {void}
+   */
+  function renderTopText(ctx, properties) {
+    ctx.font = properties.fontFamily
+      ? `${properties.fontSize}px ${properties.fontFamily}`
+      : `${properties.fontSize}px BADABB`;
+    ctx.strokeStyle = '#000';
+    ctx.lineWidth = 2;
+    ctx.lineJoin = 'miter';
+    ctx.miterLimit = 2;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'hanging';
+    ctx.strokeText(properties.text, canvas.width * 0.5, 25);
+    ctx.fillStyle = properties.color ? properties.color : '#fff';
+    ctx.fillText(properties.text, canvas.width * 0.5, 25);
+  }
+
+  /**
+   * Sets the bottom text properties in the canvas context
+   * @param {Object} ctx the canvas 2D context
+   * @param {Object} properties the properties from the url query params
+   * @returns {void}
+   */
+  function renderBottomText(ctx, properties) {
+    ctx.font = properties.fontFamily
+      ? `${properties.fontSize}px ${properties.fontFamily}`
+      : '50px BADABB';
+    ctx.strokeStyle = '#000';
+    ctx.lineWidth = 2;
+    ctx.lineJoin = 'miter';
+    ctx.miterLimit = 2;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'hanging';
+    ctx.strokeText(
+      properties.text,
+      canvas.width * 0.5,
+      canvas.height - properties.fontSize - 20 / 2
+    );
+    ctx.fillStyle = properties.color ? properties.color : '#fff';
+    ctx.fillText(
+      properties.text,
+      canvas.width * 0.5,
+      canvas.height - properties.fontSize - 20 / 2
+    );
+  }
+
+  /**
+   * TODO: Download the image
+   */
+  function downloadMemeCanvas() {
+    const downloadBtn = document.getElementById('downloadBtn');
+    downloadBtn.addEventListener('click', function(event) {
+      const image = canvas.toDataURL('image/jpeg');
+      downloadBtn.href = image;
+      console.log(image);
+    });
+  }
+
+  downloadMemeCanvas();
+  drawPreviewImageInCanvas(selectedMeme);
 }

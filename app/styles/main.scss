@@ -326,6 +326,12 @@ body {
 .bottomPreviewText {
   color: #fff;
   text-shadow: #000 -2px 0px, #000 0px 2px, #000 2px 0px, #000 0px -2px;
+  margin: 0 auto;
+  padding: 8px;
+  font-size: 50px;
+  font-family: $tags-fontFamily, Haettenschweiler, 'Arial Narrow Bold',
+    sans-serif;
+  text-transform: uppercase;
 }
 
 .generator-fontFamily {
@@ -371,21 +377,19 @@ body {
   line-height: 1;
 }
 
-.topPreviewText,
-.bottomPreviewText {
-  margin: 0 auto;
-  padding: 8px;
-  font-size: 50px;
-  font-family: $tags-fontFamily, Haettenschweiler, 'Arial Narrow Bold',
-    sans-serif;
-}
-
 @media screen and (max-width: $break-small) {
   .meme-img-generator,
   .previewText {
     width: 320px;
     height: 320px;
   }
+}
+
+/* Custom download page */
+#downloadBtn {
+  color: #fff;
+  font-family: $main-fontFamily, sans-serif;
+  text-decoration: none;
 }
 
 /* Custom page footer */
