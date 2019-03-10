@@ -103,6 +103,7 @@ function generator(selectedMeme, query) {
   let params = new URLSearchParams(query);
   let navigoUrl = router.lastRouteResolved();
   params.set('imageUrl', selectedMeme.img_src);
+  params.set('selectedFontFamily', 'BADABB');
 
   /**
    * Default properties to be set as query parameters
