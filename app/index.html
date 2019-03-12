@@ -1,88 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
-   <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta http-equiv="X-UA-Compatible" content="ie=edge">
-      <meta name="description" content="Meme generator application made by Guild 24 of Open Source Weekends.">
-      <title>Memezinga</title>
-      <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-      <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css" type="text/css">
-      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
-         crossorigin="anonymous">
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Condensed">
-      <link rel="stylesheet" href="styles/main.css">
-   </head>
-   <body>
-      <nav class="navbar navbar-default d-flex fixed-top">
-         <a href="#index.html" class="navbar-brand">Home</a>
-         <a href="#" class="nav-link">
-         <button id="login" type="button" class="btn btn-outline-light"><i class="fas fa-user"></i>Login</button>
-         <button id="logout" type="button" class="btn btn-outline-light"><img class="fas fa-user" src="images/user_icon.svg"></i>Logout</button>
-         </a>
-      </nav>
-      <header class="header-section">
-         <div class="dark-overlay">
-            <div class="home-inner container">
-               <div class="row">
-                  <div class="col-lg-12">
-                     <img class="img-fluid mx-auto d-block memezinga-logo" src="images/logoMemezinga.png" alt="Memezinga Logo">
-                  </div>
-               </div>
-            </div>
-         </div>
-      </header>
-      <div id="main-wrapper"></div>
-      <footer class="footer main-footer mt-5">
-         <div class="col footer_item d-flex justify-content-between align-items-center">
-            <p><a href="https://github.com/memezinga" target="_blank">Memezinga team 2019</a></p>
-            <div class="footer-details d-flex justify-content-between align-items-center">
-               <p>Made by students at </p>
-               <a href="https://www.fictizia.com/" target="_blank"><img class="logo" src="images/fictizia-logo.png" alt="Fictizia Logo"></a>
-            </div>
-         </div>
-      </footer>
-      <!-- Firebase scripts -->
-      
 
-      <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-      <script>
-         (function (b, o, i, l, e, r) {
-           b.GoogleAnalyticsObject = l;
-           b[l] ||
-             (b[l] = function () {
-               (b[l].q = b[l].q || []).push(arguments);
-             });
-           b[l].l = +new Date();
-           e = o.createElement(i);
-           r = o.getElementsByTagName(i)[0];
-           e.src = 'https://www.google-analytics.com/analytics.js';
-           r.parentNode.insertBefore(e, r);
-         })(window, document, 'script', 'ga');
-         ga('create', 'UA-XXXXX-X');
-         ga('send', 'pageview');
-      </script>
-      <!-- build:js scripts/vendor.js -->
-      <script type="text/javascript" src="/node_modules/jquery/dist/jquery.min.js"></script>
-      <script type="text/javascript" src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-      <script type="text/javascript" src="/node_modules/navigo/lib/navigo.min.js"></script>
-      <script src="https://www.gstatic.com/firebasejs/5.8.1/firebase.js"></script>
-      <script>
-         const config = {
-           apiKey: 'AIzaSyAHDeVha2LmggcEyJuSMX9t60JMdepNwQw',
-           authDomain: 'memezinga-development.firebaseapp.com',
-           databaseURL: 'https://memezinga-development.firebaseio.com',
-           projectId: 'memezinga-development',
-           storageBucket: 'memezinga-development.appspot.com',
-           messagingSenderId: '1055583251420'
-         };
-         
-         firebase.initializeApp(config);
-      </script>
-      <!-- endbuild -->
-      <!-- build:js scripts/main.js -->
-      <script type="text/javascript" src="scripts/templates.js"></script>
-      <script type="text/javascript" src="scripts/main.js"></script>
-      <!-- endbuild -->
-   </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="description" content="Meme generator application made by Guild 24 of Open Source Weekends.">
+  <title>Memezinga</title>
+  <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css" type="text/css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+    integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Condensed">
+  <link rel="stylesheet" href="styles/main.css">
+</head>
+
+<body>
+  <nav class="navbar navbar-default d-flex fixed-top">
+    <a href="#index.html" class="navbar-brand">Home</a>
+    <a href="#" class="nav-link">
+      <button id="login" type="button" class="btn btn-outline-light"><i class="fas fa-user"></i>Login</button>
+      <button id="logout" type="button" class="btn btn-outline-light"><img class="fas fa-user"
+          src="images/user_icon.svg"></i>Logout</button>
+    </a>
+  </nav>
+  <header class="header-section">
+    <div class="dark-overlay">
+      <div class="home-inner container">
+        <div class="row">
+          <div class="col-lg-12">
+            <img class="img-fluid mx-auto d-block memezinga-logo" src="images/logoMemezinga.png" alt="Memezinga Logo">
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div id="main-wrapper"></div>
+  <footer class="footer main-footer mt-5">
+    <div class="col footer_item d-flex justify-content-between align-items-center">
+      <p><a href="https://github.com/memezinga" target="_blank">Memezinga team 2019</a></p>
+      <div class="footer-details d-flex justify-content-between align-items-center">
+        <p>Made by students at </p>
+        <a href="https://www.fictizia.com/" target="_blank"><img class="logo" src="images/fictizia-logo.png"
+            alt="Fictizia Logo"></a>
+      </div>
+    </div>
+  </footer>
+  <!-- Firebase scripts -->
+
+
+  <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+  <script>
+    (function (b, o, i, l, e, r) {
+      b.GoogleAnalyticsObject = l;
+      b[l] ||
+        (b[l] = function () {
+          (b[l].q = b[l].q || []).push(arguments);
+        });
+      b[l].l = +new Date();
+      e = o.createElement(i);
+      r = o.getElementsByTagName(i)[0];
+      e.src = 'https://www.google-analytics.com/analytics.js';
+      r.parentNode.insertBefore(e, r);
+    })(window, document, 'script', 'ga');
+    ga('create', 'UA-XXXXX-X');
+    ga('send', 'pageview');
+  </script>
+  <!-- build:js scripts/vendor.js -->
+  <script type="text/javascript" src="/node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="/node_modules/navigo/lib/navigo.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.8.1/firebase.js"></script>
+  <script>
+    const config = {
+      apiKey: 'AIzaSyAHDeVha2LmggcEyJuSMX9t60JMdepNwQw',
+      authDomain: 'memezinga-development.firebaseapp.com',
+      databaseURL: 'https://memezinga-development.firebaseio.com',
+      projectId: 'memezinga-development',
+      storageBucket: 'memezinga-development.appspot.com',
+      messagingSenderId: '1055583251420'
+    };
+
+    firebase.initializeApp(config);
+  </script>
+  <!-- endbuild -->
+  <!-- build:js scripts/main.js -->
+  <script type="text/javascript" src="scripts/templates.js"></script>
+  <script type="text/javascript" src="scripts/main.js"></script>
+  <!-- endbuild -->
+</body>
+
 </html>
