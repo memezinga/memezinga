@@ -81,11 +81,20 @@ router
     },
     'download/:id': function(params, query) {
       const memeId = params.id;
+      memesRef.child(memeId).once('value', snapshot => {
+        const meme = snapshot.val();
+        setContent(downloadTpl(meme, query));
+        downloadMeme(meme, query);
+        router.updatePageLinks();
+      });      
+      /*
+      const memeId = params.id;
       const selectedMeme = transformQueryToPairs(query);
       selectedMeme.id = memeId;
       setContent(downloadTpl(selectedMeme));
       downloadMeme(selectedMeme);
       router.updatePageLinks();
+      */
     }
   })
   .notFound(function() {
@@ -122,16 +131,16 @@ function refreshUrl (parameters) {
  */
 function transformQueryToPairs(query) {
   const splitQ = query.split('&');
-  return splitQ.reduce(function(queryObj, queryString) {
-    const queryPairs = queryString.split('=');
-
-    /**
-      * @see: https://stackoverflow.com/q/16084935
-      * @todo: request to fix that in memegeddon
-    */
-    queryObj[queryPairs[0]] = decodeURIComponent(queryPairs[1].replace(/%252.[0-9]*/g,'%20'));
-    return queryObj;
-  }, {});
+    return splitQ.reduce(function(queryObj, queryString) {
+      const queryPairs = queryString.split('=');
+  
+      /**
+        * @see: https://stackoverflow.com/q/16084935
+        * @todo: request to fix that in memegeddon
+      */
+      queryObj[queryPairs[0]] = queryPairs[1] ? decodeURIComponent(queryPairs[1].replace(/%252.[0-9]*/g,'%20')) : "";
+      return queryObj;
+    }, {});
 }
 
 
@@ -140,10 +149,8 @@ function transformQueryToPairs(query) {
    */
 function defaultMemeProperties (newProperties) {
   return Object.assign({
-    fontSizeTopText: 50,
-    fontSizeBottomText: 50,
-    selectedColor: '#ffffff',
-    selectedFontFamily: 'BADABB',
+    color: '#ffffff',
+    fontFamily: 'BADABB',
     topText: '',
     bottomText: ''
   }, newProperties);
@@ -178,7 +185,7 @@ function generator(selectedMeme, query) {
   bottomInput.addEventListener("keyup", refresh);
   colorPicker.addEventListener('change', refresh);
   menu.addEventListener('click', (event) => {
-    toggleActiveFontClass(event);
+    manageFontClass(event.target);
     refresh();
   });
 
@@ -188,9 +195,11 @@ function generator(selectedMeme, query) {
    * @returns {void}
    * @see #selectFontFamily
    */
-  function toggleActiveFontClass(event) {
+  function manageFontClass(activeElement) {
     const items = Array.from(document.querySelectorAll(".generator-buttons .dropdown-item"));
-    items.forEach(element => element.classList.toggle("active"));
+    items.forEach(element => element.classList.remove("active"));
+    activeElement.classList.add("active");
+    
   }
   
   function updateButton () {
@@ -200,8 +209,7 @@ function generator(selectedMeme, query) {
   }
 
   function updateFormDetails (settings={}) {
-    const {topText = "", bottomText = "", color = "#ffffff", fontFamily= "badabd"} = settings;
-    menu.querySelector(`[data-id='${fontFamily}']`).classList.add("active");
+    const {topText = "", bottomText = "", color = "#ffffff"} = settings;
     topInput.value = topText;
     bottomInput.value = bottomText;
     colorPicker.value = color;
@@ -228,102 +236,108 @@ function generator(selectedMeme, query) {
 
 
 
-function downloadMeme(selectedMeme) {
+
+
+function renderCanvas (meme, settings){
+
   const canvas = document.getElementById('canvas');
+  const ctx = canvas.getContext("2d");
+  canvas.width = 400;
+  canvas.height = 400;
+  
+  
+  var background = new Image();
+  //@see: https://ourcodeworld.com/articles/read/182/the-canvas-has-been-tainted-by-cross-origin-data-and-tainted-canvases-may-not-be-exported
+  background.crossOrigin = "Anonymous"
+  background.src = meme.url;
+  
+  // Make sure the image is loaded first otherwise nothing will draw.
+  background.onload = function(){
+      drawImageProp(ctx, background, 0, 0, canvas.width, canvas.height);
+      // Render Top Text
+      renderText(ctx, {fontFamily: settings.fontFamily, color: settings.color, text: settings.topText.toUpperCase(), width: 200, height:50});
+      // Render Bottom Text
+      renderText(ctx, {fontFamily: settings.fontFamily, color: settings.color, text: settings.bottomText.toUpperCase(), width: 200, height:380});
+  }
 
-  /**
-   * Draws the image and texts in the canvas element
-   * @param {Object} selectedMeme meme form the previous step
-   * @returns {void}
-   * @see #renderTopText
-   * @see #renderBottomText
-   */
-  function drawPreviewImageInCanvas(selectedMeme) {
-    const image = document.getElementById('finalImg');
-    const ctx = canvas.getContext('2d');
-
-    const topTextProperties = {
-      text: finalTopText,
-      fontFamily: selectedMeme.selectedFontFamily,
-      fontSize: selectedMeme.fontSizeTopText,
-      color: selectedMeme.selectedColor
-    };
-    const bottomTextProperties = {
-      text: finalBtmText,
-      fontFamily: selectedMeme.selectedFontFamily,
-      fontSize: selectedMeme.fontSizeBottomText,
-      color: selectedMeme.selectedColor
-    };
-
-    canvas.width = 400;
-    canvas.height = 400;
-    ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
-    renderTopText(ctx, topTextProperties);
-    renderBottomText(ctx, bottomTextProperties);
+  function renderText(ctx, opt){
+      ctx.font = `50px "${opt.fontFamily}"`;
+      ctx.fillStyle = opt.color;
+      ctx.textAlign = "center";
+      ctx.strokeStyle = 'black';
+      ctx.lineWidth = 5;
+      ctx.strokeAlign= "center";
+      ctx.strokeText(opt.text, opt.width, opt.height);
+      ctx.fillText(opt.text, opt.width, opt.height);
   }
 
   /**
-   * Sets the top text properties in the canvas context
-   * @param {Object} ctx the canvas 2D context
-   * @param {Object} properties the properties from the url query params
-   * @returns {void}
-   */
-  function renderTopText(ctx, properties) {
-    ctx.font = properties.fontFamily
-      ? `${properties.fontSize}px ${properties.fontFamily}`
-      : `${properties.fontSize}px BADABB`;
-    ctx.strokeStyle = '#000';
-    ctx.lineWidth = 2;
-    ctx.lineJoin = 'miter';
-    ctx.miterLimit = 2;
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'hanging';
-    ctx.strokeText(properties.text, canvas.width * 0.5, 25);
-    ctx.fillStyle = properties.color ? properties.color : '#fff';
-    ctx.fillText(properties.text, canvas.width * 0.5, 25);
+  * @see: https://stackoverflow.com/a/21961894
+  */
+  function drawImageProp(ctx, img, x, y, w, h, offsetX, offsetY) {
+  
+      if (arguments.length === 2) {
+          x = y = 0;
+          w = ctx.canvas.width;
+          h = ctx.canvas.height;
+      }
+  
+      // default offset is center
+      offsetX = typeof offsetX === "number" ? offsetX : 0.5;
+      offsetY = typeof offsetY === "number" ? offsetY : 0.5;
+  
+      // keep bounds [0.0, 1.0]
+      if (offsetX < 0) offsetX = 0;
+      if (offsetY < 0) offsetY = 0;
+      if (offsetX > 1) offsetX = 1;
+      if (offsetY > 1) offsetY = 1;
+  
+      let iw = img.width,
+          ih = img.height,
+          r = Math.min(w / iw, h / ih),
+          nw = iw * r,   // new prop. width
+          nh = ih * r,   // new prop. height
+          cx, cy, cw, ch, ar = 1;
+  
+      // decide which gap to fill    
+      if (nw < w) ar = w / nw;                             
+      if (Math.abs(ar - 1) < 1e-14 && nh < h) ar = h / nh;  // updated
+      nw *= ar;
+      nh *= ar;
+  
+      // calc source rectangle
+      cw = iw / (nw / w);
+      ch = ih / (nh / h);
+  
+      cx = (iw - cw) * offsetX;
+      cy = (ih - ch) * offsetY;
+  
+      // make sure source rectangle is valid
+      if (cx < 0) cx = 0;
+      if (cy < 0) cy = 0;
+      if (cw > iw) cw = iw;
+      if (ch > ih) ch = ih;
+  
+      // fill image in dest. rectangle
+      ctx.drawImage(img, cx, cy, cw, ch,  x, y, w, h);
   }
 
-  /**
-   * Sets the bottom text properties in the canvas context
-   * @param {Object} ctx the canvas 2D context
-   * @param {Object} properties the properties from the url query params
-   * @returns {void}
-   */
-  function renderBottomText(ctx, properties) {
-    ctx.font = properties.fontFamily
-      ? `${properties.fontSize}px ${properties.fontFamily}`
-      : '50px BADABB';
-    ctx.strokeStyle = '#000';
-    ctx.lineWidth = 2;
-    ctx.lineJoin = 'miter';
-    ctx.miterLimit = 2;
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'hanging';
-    ctx.strokeText(
-      properties.text,
-      canvas.width * 0.5,
-      canvas.height - properties.fontSize - 20 / 2
-    );
-    ctx.fillStyle = properties.color ? properties.color : '#fff';
-    ctx.fillText(
-      properties.text,
-      canvas.width * 0.5,
-      canvas.height - properties.fontSize - 20 / 2
-    );
-  }
 
-  /**
-   * TODO: Download the image
-   */
-  function downloadMemeCanvas() {
-    const downloadBtn = document.getElementById('downloadBtn');
-    downloadBtn.addEventListener('click', function(event) {
-      const image = canvas.toDataURL('image/jpeg');
-      downloadBtn.href = image;
-      console.log(image);
-    });
-  }
+}
 
-  downloadMemeCanvas();
-  drawPreviewImageInCanvas(selectedMeme);
+
+
+function downloadMeme(meme, query) {
+  let params = transformQueryToPairs(query);
+  const properties = defaultMemeProperties(params);
+  previewImg (properties);
+  renderCanvas(meme, properties);
+  
+  const downloadBtn = document.getElementById('downloadBtn');
+  downloadBtn.addEventListener('click', function(event) {
+    const canvas = document.getElementById('canvas');
+    const imageData = canvas.toDataURL('image/png');
+    downloadBtn.href = imageData;
+  });
+  
 }
