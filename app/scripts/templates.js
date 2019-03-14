@@ -90,6 +90,22 @@ function galleryTpl(memes) {
 }
 
 function generatorTpl(meme) {
+  function dropdownItems(font){
+    
+    if (font === "badabd") {
+      return `
+        <button class="dropdown-item" data-id="Impact">Impact look</button>
+        <button class="dropdown-item active" data-id="BADABB">Memezinga look</button>
+      `;
+    } else {
+      return `
+        <button class="dropdown-item active" data-id="Impact">Impact look</button>
+        <button class="dropdown-item" data-id="BADABB">Memezinga look</button>
+      `;  
+    }
+    
+  }
+  
   function tagTpl(tag) {
     return `<li class="tag d-inline">${tag}</li>`;
   }
@@ -129,7 +145,8 @@ function generatorTpl(meme) {
               class="form-control generator-input topText"
               placeholder="${meme.topText}"
               aria-label=${meme.topText}"
-              aria-describedby="inputGroup">
+              aria-describedby="inputGroup"
+              value="${meme.topText}">
           </div>
           <div class="input-group mb-3">
             <input
@@ -140,7 +157,8 @@ function generatorTpl(meme) {
               class="form-control generator-input bottomText"
               placeholder="${meme.bottomText}"
               aria-label="${meme.bottomText}"
-              aria-describedby="inputGroup">
+              aria-describedby="inputGroup"
+              value="${meme.bottomText}">
           </div>
           <div class="mb-4 generator-buttons">
             <div class="dropdown">
@@ -150,17 +168,14 @@ function generatorTpl(meme) {
                 aria-haspopup="true"
                 aria-expanded="false" />
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <button class="dropdown-item" data-id="impact">Impact look</button>
-                <button class="dropdown-item active" data-id="badabd">Memezinga look</button>
+                ${dropdownItems(meme.fontFamily)}
               </div>
             </div>
             <div class="btn-wrapper">
               <input type="color" value="#ffffff" class="generator-color-picker"></input>
             </div>
           </div>
-          <button type="button" class="btn btn-danger btn-sm createButton" data-id=${
-            meme.id
-          }>Crear</button>
+          <button type="button" class="btn btn-danger btn-sm createButton" data-navigo>Crear</button>
         </div>
       </section>
     </main>`;

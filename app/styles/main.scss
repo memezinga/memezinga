@@ -343,13 +343,32 @@ body {
   padding: 8px 0 0 0;
 }
 
+/**
+* @see: https://stackoverflow.com/a/41884762
+*/
 .generator-color-picker {
-  height: 40px;
-  width: 40px;
-  border-radius: 50%;
+  -webkit-appearance: none;
+  padding: 0;
   border: 2px solid #000;
   background: white;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
 }
+.generator-color-picker::-webkit-color-swatch {
+  border: none;
+  border-radius: 50%;
+  padding: 0;
+}
+.generator-color-picker::-webkit-color-swatch-wrapper {
+  border: none;
+  border-radius: 50%;
+  padding: 0;
+}
+
+
+
+
 
 .btn-danger {
   background-color: $memezingaRed;
