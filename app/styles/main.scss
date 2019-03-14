@@ -4,19 +4,23 @@ $memezingaRed: #e23535;
 $memezingaYellow: #fef851;
 $main-fontFamily: 'Roboto Condensed';
 $tags-fontFamily: 'BADABB';
+$navbar-dark: #000;
+$break-small: 575.98px;
+$break-medium: 768px;
+$break-large: 992px;
 @font-face {
-	font-family: 'BADABB';
-	src: url('../fonts/BADABB.eot');
-	src: local('BADABB'), url('../fonts/BADABB.woff') format('woff'), url('../fonts/BADABB.ttf') format('truetype');
+  font-family: 'BADABB';
+  src: url('../fonts/BADABB.eot');
+  src: local('BADABB'), url('../fonts/BADABB.woff') format('woff'),
+    url('../fonts/BADABB.ttf') format('truetype');
 }
-
 
 /* General styles */
 
 * {
- box-sizing: border-box;
- margin: 0;
- padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
@@ -25,43 +29,57 @@ body {
 
 /* Navbar change color effect css*/
 
-.navbar-default{
-  transition:500ms ease;
-  background:transparent;
+.navbar-default {
+  transition: 500ms ease;
+  background: transparent;
 }
 
-.navbar-default.scrolled{
-  background:#000;
+.navbar-default.scrolled {
+  background: $navbar-dark;
 }
-
 
 /* Custom page header */
 
 .navbar {
-	font-family: $main-fontFamily;
-	padding: 20px 50px;
+  font-family: $main-fontFamily;
+  padding: 20px 50px;
 }
 
 .navbar a {
-	color: white;
+  color: white;
 }
 
 .btn {
-	border-radius: 25px;
-	padding: 5px 30px;
+  border-radius: 25px;
+  padding: 5px 30px;
+  text-transform: uppercase;
 }
 
 .btn i {
-	margin-right: 13px;
+  margin-right: 13px;
 }
 
-@media screen and (max-width: 575.98px){
+#logout {
+  display: none;
+  img {
+    border-radius: 50%;
+    max-height: 25px;
+    max-width: 25px;
+    margin-right: 13px;
+  }
+}
+
+.navbar-brand:hover {
+  color: $memezingaYellow;
+}
+
+@media screen and (max-width: $break-small) {
   .navbar {
     justify-content: space-between;
     padding: 20px 25px;
   }
   .navbar-brand {
-     font-size: 1rem;
+    font-size: 1rem;
   }
   .nav-link {
     font-size: 0.8rem;
@@ -69,37 +87,37 @@ body {
 }
 
 .header-section {
-	background: url(../images/bg_header.jpg);
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-attachment: fixed;
-	max-width: 100%;
-	height: 80%;
+  background: url(../images/bg_header.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  max-width: 100%;
+  height: 80%;
 }
 
 .memezinga-logo {
-	max-width: 100%;
-	margin-top: 80px;
+  max-width: 100%;
+  margin-top: 80px;
 }
 
 .steps-box {
   display: flex;
   justify-content: space-between;
-	width: 80%;
-	height: 42px;
-	position: relative;
-	margin: auto;
-	margin-top: -21px;
-	&:before {
-		content: "";
-		position: absolute;
-		display: block;
-		width: 100%;
-		height: 4px;
-		border-top: 4px dashed black;
-		top: 50%;
-		transform: translateY(-21%);
-	}
+  width: 80%;
+  height: 42px;
+  position: relative;
+  margin: auto;
+  margin-top: -21px;
+  &:before {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 4px;
+    border-top: 4px dashed black;
+    top: 50%;
+    transform: translateY(-21%);
+  }
 }
 
 .dot-elem {
@@ -117,17 +135,30 @@ body {
   display: inline-block;
 }
 
+.current-step {
+  background-color: $memezingaYellow;
+  color: black;
+  border: 1px solid black;
+}
+
+.clickable-step:hover {
+  background-color: $memezingaYellow;
+  color: black;
+  border: 1px solid black;
+  cursor: pointer;
+}
+
 .description {
   display: flex;
   justify-content: space-between;
-	width: 85%;
-	height: 42px;
-	margin: auto;
-	margin-top: 21px;
-	font-family: $main-fontFamily;
-	.special {
-	  margin-right: 25px;
-	}
+  width: 85%;
+  height: 42px;
+  margin: auto;
+  margin-top: 21px;
+  font-family: $main-fontFamily;
+  .special {
+    margin-right: 25px;
+  }
 }
 
 .home-main-section {
@@ -135,12 +166,12 @@ body {
 }
 
 .main-title {
-	font-family: $tags-fontFamily;
-	font-size: 4em;
+  font-family: $tags-fontFamily;
+  font-size: 4em;
 }
 
 .main-paragraph {
-	font-family: $main-fontFamily;
+  font-family: $main-fontFamily;
 }
 
 .img-placeholder {
@@ -148,8 +179,8 @@ body {
 }
 
 .btn-danger {
-	background-color: $memezingaRed;
-	margin-top: 2.5em;
+  background-color: $memezingaRed;
+  margin-top: 2.5em;
 }
 
 /* Custom page gallery */
@@ -193,14 +224,27 @@ body {
   padding: 0 32px;
 }
 
-.gallery-filter-btn, .tag {
+.gallery-filter-btn,
+.tag {
   background: white;
   border-right: 1px solid #000;
   padding: 0 16px;
   list-style: none;
 }
 
-@media screen and (min-width: 992px) {
+.meme-gallery-item {
+  cursor: pointer;
+}
+
+.meme-gallery-item .meme-img {
+  width: 300px;
+  height: 300px;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+@media screen and (min-width: $break-large) {
   .input-group {
     width: 80%;
   }
@@ -270,26 +314,108 @@ body {
 
 /* Custom meme generator page */
 
-.generator-color-text {
+.meme-img-generator {
+  width: 400px;
+  height: 400px;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.topPreviewText,
+.bottomPreviewText {
+  color: #fff;
+  text-shadow: #000 -2px 0px, #000 0px 2px, #000 2px 0px, #000 0px -2px;
+  margin: 0 auto;
+  padding: 8px;
+  font-size: 50px;
+  font-family: $tags-fontFamily, Haettenschweiler, 'Arial Narrow Bold',
+    sans-serif;
+  text-transform: uppercase;
+}
+
+.generator-fontFamily {
   width: 80px;
-  padding-top:  10px;
+  padding-top: 10px;
 }
 
 .btn-wrapper {
   padding: 8px 0 0 0;
 }
 
+/**
+* @see: https://stackoverflow.com/a/41884762
+*/
 .generator-color-picker {
-  height: 40px;
-  width: 40px;
-  border-radius: 50%;
+  -webkit-appearance: none;
+  padding: 0;
   border: 2px solid #000;
   background: white;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+.generator-color-picker::-webkit-color-swatch {
+  border: none;
+  border-radius: 50%;
+  padding: 0;
+}
+.generator-color-picker::-webkit-color-swatch-wrapper {
+  border: none;
+  border-radius: 50%;
+  padding: 0;
 }
 
-.generator-btn {
-  background-color: #000;
+
+
+
+
+.btn-danger {
+  background-color: $memezingaRed;
   color: white;
+}
+
+.memeContainer {
+  position: relative;
+}
+
+.meme-preview {
+  z-index: 0;
+}
+
+.previewText {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  font-size: 30px;
+  height: 400px;
+  width: 400px;
+  padding: 8px;
+  line-height: 1;
+}
+
+@media screen and (max-width: $break-small) {
+  .meme-img-generator,
+  .previewText {
+    width: 320px;
+    height: 320px;
+  }
+}
+
+/* Custom download page */
+#downloadBtn {
+  color: #fff;
+  font-family: $main-fontFamily, sans-serif;
+  text-decoration: none;
+}
+
+
+#canvas {
+  width:400px;
+  height:400px;
+  display:none;
 }
 
 /* Custom page footer */
@@ -305,43 +431,49 @@ body {
     margin-top: 16px;
     margin-right: 10px;
   }
-}
-
-.footer-flexObj {
-  padding: 0 50px;
-}
-
-@media screen and (max-width: 575.98px){
-  .footer-flexObj {
-     flex-direction : column;
+  a {
+    color: white;
+  }
+  a:hover {
+    color: $memezingaYellow;
+    text-decoration: none;
   }
 }
 
+.footer_item {
+  padding: 0 50px;
+}
+
+@media screen and (max-width: $break-small) {
+  .footer_item {
+    flex-direction: column;
+  }
+}
 
 /* Customize container */
 
-@media (min-width: 48em) {
-	.container {
-		max-width: 46rem;
-	}
+@media (min-width: $break-medium) {
+  .container {
+    max-width: 46rem;
+  }
 }
 
-.container-narrow>hr {
-	margin: 2rem 0;
+.container-narrow > hr {
+  margin: 2rem 0;
 }
 
 /* Responsive: Portrait tablets and up */
 
-@media screen and (min-width: 48em) {
-	/* Remove the padding we set earlier */
-	.header,
-	.marketing,
-	.footer {
-		padding-right: 0;
-		padding-left: 0;
-	}
-	/* Space out the masthead */
-	.header {
-		margin-bottom: 2rem;
-	}
+@media screen and (min-width: $break-medium) {
+  /* Remove the padding we set earlier */
+  .header,
+  .marketing,
+  .footer {
+    padding-right: 0;
+    padding-left: 0;
+  }
+  /* Space out the masthead */
+  .header {
+    margin-bottom: 2rem;
+  }
 }
