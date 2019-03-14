@@ -87,14 +87,6 @@ router
         downloadMeme(meme, query);
         router.updatePageLinks();
       });      
-      /*
-      const memeId = params.id;
-      const selectedMeme = transformQueryToPairs(query);
-      selectedMeme.id = memeId;
-      setContent(downloadTpl(selectedMeme));
-      downloadMeme(selectedMeme);
-      router.updatePageLinks();
-      */
     }
   })
   .notFound(function() {
