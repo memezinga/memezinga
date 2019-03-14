@@ -35,7 +35,7 @@ function galleryTpl(memes) {
       <div class="mb-4 meme-gallery-item" href="${url}" data-navigo>
         <div class="card bg-dark text-white">
           <div class="meme-img" style="background-image:url('${
-            meme.img_src
+            meme.url
           }')"></div>
           <p class="card-img-overlay generator-card-ovl meme-name">${
             meme.name
@@ -130,7 +130,7 @@ function generatorTpl(meme) {
             <span class="bottomPreviewText">${meme.bottomText}</span>
           </div>
           <div class="meme-img-generator meme-preview"
-            style="background-image:url('${meme.img_src}')">
+            style="background-image:url('${meme.url}')">
           </div>
         </div>
         <div class="flex-grow-1 generator-controls">
@@ -181,19 +181,8 @@ function generatorTpl(meme) {
     </main>`;
 }
 
-function downloadTpl(selectedMeme) {
-  let regex = /\+/g;
-  let finalTopText = selectedMeme.topText.replace(regex, ' ');
-  let finalBtmText = selectedMeme.bottomText.replace(regex, ' ');
-  const url = `generator/${selectedMeme.id}?topText=${
-    selectedMeme.topText
-  }&bottomText=${selectedMeme.bottomText}`;
-  const font = selectedMeme.selectedFontFamily;
-  const fontSizeTop = selectedMeme.fontSizeTopText;
-  const fontSizeBottom = selectedMeme.fontSizeBottomText;
-  const color = selectedMeme.selectedColor;
-  const topTextStyles = `font-size: ${fontSizeTop}px; font-family: ${font}; color: ${color};`;
-  const bottomTextStyles = `font-size: ${fontSizeBottom}px; font-family: ${font}; color: ${color};`;
+function downloadTpl(meme) {
+  const url = document.location.hash.replace('#!download/', 'generator/');
 
   return `
     <div class="col-lg-10 mx-auto">
@@ -211,21 +200,21 @@ function downloadTpl(selectedMeme) {
     <main class="home-main-section">
       <section class="container main-section">
         <div class="col-lg-8 mx-auto text-center">
-        <div class="mb-4 mr-5 memeContainer">
-          <div class="previewText">
-            <span class="topPreviewText" style="${topTextStyles}">
-              ${finalTopText}
-            </span>
-            <span class="bottomPreviewText" style="${bottomTextStyles}">
-              ${finalBtmText}
-            </span>
+          <div class="mb-4 mr-5 memeContainer">
+          
+          
+            <div class="previewText">
+              <span class="topPreviewText"></span>
+              <span class="bottomPreviewText"></span>
+            </div>
+            <div class="meme-img-generator meme-preview"
+              style="background-image:url('${meme.url}')">
+            </div>
           </div>
-          <img id="finalImg" class="meme-img-generator meme-preview" src='${
-            selectedMeme.imageUrl
-          }' alt="">
-          </div>
-          <canvas id="canvas" style="display: none;"></canvas>
-          <button type="button" class="btn btn-danger"><a id="downloadBtn" href=""  download="memezingaMeme.jpg">Download</a></button>
+          <canvas id="canvas"></canvas>
+          <button type="button" class="btn btn-danger">
+            <a id="downloadBtn" href=""  download="memezinga_meme.png">Download</a>
+          </button>
         </div>
       </section>
     </main>`;
