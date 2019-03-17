@@ -10,13 +10,13 @@ window.addEventListener('scroll', function(event) {
 });
 
 // Login
-
 var loginSltr = document.getElementById('login');
 var logoutSltr = document.getElementById('logout');
 
 var auth = firebase.auth();
 var provider = new firebase.auth.GithubAuthProvider();
-var memesRef = firebase.database().ref('memes');
+var db = firebase.firestore();
+var memesRef = db.collection('memes');
 
 loginSltr.addEventListener('click', login);
 logoutSltr.addEventListener('click', logout);
@@ -62,31 +62,52 @@ router
     },
     gallery: function() {
       memesRef
-        .orderByKey()
-        .limitToFirst(20)
-        .once('value', snapshot => {
-          const memes = Object.values(snapshot.val());
+        .orderBy('id', 'desc')
+        .limit(20)
+        .get()
+        .then((querySnapshot) => {
+          const memes = [];
+          querySnapshot.forEach((doc) => {
+              memes.push(doc.data());
+          });
           setContent(galleryTpl(memes));
           router.updatePageLinks();
-        });
+      });
     },
     'generator/:id': function(params, query) {
       const memeId = params.id;
-      memesRef.child(memeId).once('value', snapshot => {
-        const meme = snapshot.val();
-        setContent(generatorTpl(meme));
-        generator(meme, query);
-        router.updatePageLinks();
+      memesRef
+      .doc(memeId)
+      .get()
+      .then(function(doc) {
+        if (doc.exists) {
+              const meme = doc.data();
+              setContent(generatorTpl(meme));
+              generator(meme, query);
+              router.updatePageLinks();
+          } else {
+              router.navigate('/');
+          }
+      }).catch(function(error) {
+              router.navigate('/');
       });
     },
     'download/:id': function(params, query) {
       const memeId = params.id;
-      memesRef.child(memeId).once('value', snapshot => {
-        const meme = snapshot.val();
-        setContent(downloadTpl(meme, query));
-        downloadMeme(meme, query);
-        router.updatePageLinks();
-      });      
+      memesRef.doc(memeId)
+      .get()
+      .then(function(doc) {
+        if (doc.exists) {
+              const meme = doc.data();
+              setContent(downloadTpl(meme, query));
+              downloadMeme(meme, query);
+              router.updatePageLinks();
+          } else {
+              router.navigate('/');
+          }
+      }).catch(function(error) {
+              router.navigate('/');
+      });
     }
   })
   .notFound(function() {
@@ -114,7 +135,6 @@ function refreshUrl (parameters) {
   }
   
 }
-  
 
 /**
  * Extracts key/value pairs from query params
@@ -225,10 +245,6 @@ function generator(selectedMeme, query) {
   updateFormDetails (properties);
   previewImg (properties);
 }
-
-
-
-
 
 function renderCanvas (meme, settings){
 
