@@ -83,7 +83,7 @@ function galleryTpl(memes) {
       </section>
       <section class="mt-5">
         <div class="container-fluid d-flex flex-wrap justify-content-around">
-          ${memes.map(memeTpl).join('')};
+          ${memes.map(memeTpl).join('')}
         </div>
       </section>
     </main>`;
