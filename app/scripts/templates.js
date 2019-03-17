@@ -92,7 +92,7 @@ function galleryTpl(memes) {
 function generatorTpl(meme) {
   function dropdownItems(font){
     
-    if (font === "badabd") {
+    if (font === 'badabd') {
       return `
         <button class="dropdown-item" data-id="Impact">Impact look</button>
         <button class="dropdown-item active" data-id="BADABB">Memezinga look</button>

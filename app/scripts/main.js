@@ -16,7 +16,7 @@ var logoutSltr = document.getElementById('logout');
 
 var auth = firebase.auth();
 var provider = new firebase.auth.GithubAuthProvider();
-var memesRef = firebase.database().ref(`memes`);
+var memesRef = firebase.database().ref('memes');
 
 loginSltr.addEventListener('click', login);
 logoutSltr.addEventListener('click', logout);
@@ -100,16 +100,16 @@ function setContent(template) {
 
 
 function refreshUrl (parameters) {
-  const searchParams = new URLSearchParams("");
+  const searchParams = new URLSearchParams('');
   for (const parameter in parameters) {
     searchParams.set(parameter, encodeURI(parameters[parameter]))
   }
 
   if (window.history.replaceState) {
-      const currentHash = window.location.hash.split("?");
+      const currentHash = window.location.hash.split('?');
       currentHash[1] = searchParams.toString();
       
-      const newurl = `${window.location.protocol}//${window.location.host}${window.location.pathname}${currentHash.join("?")}`;
+      const newurl = `${window.location.protocol}//${window.location.host}${window.location.pathname}${currentHash.join('?')}`;
       window.history.replaceState({path:newurl},'',newurl);
   }
   
@@ -130,7 +130,7 @@ function transformQueryToPairs(query) {
         * @see: https://stackoverflow.com/q/16084935
         * @todo: request to fix that in memegeddon
       */
-      queryObj[queryPairs[0]] = queryPairs[1] ? decodeURIComponent(queryPairs[1].replace(/%252.[0-9]*/g,'%20')) : "";
+      queryObj[queryPairs[0]] = queryPairs[1] ? decodeURIComponent(queryPairs[1].replace(/%252.[0-9]*/g,'%20')) : '';
       return queryObj;
     }, {});
 }
@@ -155,8 +155,8 @@ function updateText(el, details) {
 }
 
 function previewImg (settings){
-  const topTextSlctr = document.getElementsByClassName("topPreviewText")[0];
-  const bottomTextSlctr = document.getElementsByClassName("bottomPreviewText")[0];
+  const topTextSlctr = document.getElementsByClassName('topPreviewText')[0];
+  const bottomTextSlctr = document.getElementsByClassName('bottomPreviewText')[0];
   updateText(topTextSlctr, {text:settings.topText, color: settings.color, fontFamily: settings.fontFamily});
   updateText(bottomTextSlctr, {text:settings.bottomText, color: settings.color, fontFamily: settings.fontFamily});
 }
@@ -173,8 +173,8 @@ function generator(selectedMeme, query) {
   const menu = document.querySelector('.dropdown-menu');
 
   // Events
-  topInput.addEventListener("keyup", refresh);
-  bottomInput.addEventListener("keyup", refresh);
+  topInput.addEventListener('keyup', refresh);
+  bottomInput.addEventListener('keyup', refresh);
   colorPicker.addEventListener('change', refresh);
   menu.addEventListener('click', (event) => {
     manageFontClass(event.target);
@@ -188,20 +188,20 @@ function generator(selectedMeme, query) {
    * @see #selectFontFamily
    */
   function manageFontClass(activeElement) {
-    const items = Array.from(document.querySelectorAll(".generator-buttons .dropdown-item"));
-    items.forEach(element => element.classList.remove("active"));
-    activeElement.classList.add("active");
+    const items = Array.from(document.querySelectorAll('.generator-buttons .dropdown-item'));
+    items.forEach(element => element.classList.remove('active'));
+    activeElement.classList.add('active');
     
   }
   
   function updateButton () {
-    const button = document.querySelector(".main-section button[data-navigo]");
-    const url = window.location.hash.replace("#!generator/", "download/");
-    button.setAttribute("href",url);
+    const button = document.querySelector('.main-section button[data-navigo]');
+    const url = window.location.hash.replace('#!generator/', 'download/');
+    button.setAttribute('href',url);
   }
 
   function updateFormDetails (settings={}) {
-    const {topText = "", bottomText = "", color = "#ffffff"} = settings;
+    const {topText = '', bottomText = '', color = '#ffffff'} = settings;
     topInput.value = topText;
     bottomInput.value = bottomText;
     colorPicker.value = color;
@@ -210,7 +210,7 @@ function generator(selectedMeme, query) {
   function refresh(){
     
     const settings = Object.assign(params, {
-      fontFamily: menu.querySelector(".active").dataset.id,
+      fontFamily: menu.querySelector('.active').dataset.id,
       topText: topInput.value.trim(),
       bottomText: bottomInput.value.trim(),
       color: colorPicker.value
@@ -233,14 +233,14 @@ function generator(selectedMeme, query) {
 function renderCanvas (meme, settings){
 
   const canvas = document.getElementById('canvas');
-  const ctx = canvas.getContext("2d");
+  const ctx = canvas.getContext('2d');
   canvas.width = 400;
   canvas.height = 400;
   
   
   var background = new Image();
   //@see: https://ourcodeworld.com/articles/read/182/the-canvas-has-been-tainted-by-cross-origin-data-and-tainted-canvases-may-not-be-exported
-  background.crossOrigin = "Anonymous"
+  background.crossOrigin = 'Anonymous'
   background.src = meme.url;
   
   // Make sure the image is loaded first otherwise nothing will draw.
@@ -255,10 +255,10 @@ function renderCanvas (meme, settings){
   function renderText(ctx, opt){
       ctx.font = `50px "${opt.fontFamily}"`;
       ctx.fillStyle = opt.color;
-      ctx.textAlign = "center";
+      ctx.textAlign = 'center';
       ctx.strokeStyle = 'black';
       ctx.lineWidth = 5;
-      ctx.strokeAlign= "center";
+      ctx.strokeAlign= 'center';
       ctx.strokeText(opt.text, opt.width, opt.height);
       ctx.fillText(opt.text, opt.width, opt.height);
   }
@@ -275,8 +275,8 @@ function renderCanvas (meme, settings){
       }
   
       // default offset is center
-      offsetX = typeof offsetX === "number" ? offsetX : 0.5;
-      offsetY = typeof offsetY === "number" ? offsetY : 0.5;
+      offsetX = typeof offsetX === 'number' ? offsetX : 0.5;
+      offsetY = typeof offsetY === 'number' ? offsetY : 0.5;
   
       // keep bounds [0.0, 1.0]
       if (offsetX < 0) offsetX = 0;
