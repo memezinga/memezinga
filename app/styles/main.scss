@@ -366,10 +366,6 @@ body {
   padding: 0;
 }
 
-
-
-
-
 .btn-danger {
   background-color: $memezingaRed;
   color: white;
@@ -405,17 +401,16 @@ body {
 }
 
 /* Custom download page */
-#downloadBtn {
+#downloadLink {
   color: #fff;
   font-family: $main-fontFamily, sans-serif;
   text-decoration: none;
 }
 
-
 #canvas {
-  width:400px;
-  height:400px;
-  display:none;
+  width: 400px;
+  height: 400px;
+  display: none;
 }
 
 /* Custom page footer */

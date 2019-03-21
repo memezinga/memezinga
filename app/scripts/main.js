@@ -459,10 +459,11 @@ function downloadMeme(meme, query) {
   previewImg(properties);
   renderCanvas(meme, properties);
 
-  const downloadBtn = document.getElementById('downloadBtn');
+  const downloadBtn = document.querySelector('.downloadBtn');
+  const downloadLink = document.getElementById('downloadLink');
   downloadBtn.addEventListener('click', function(event) {
     const canvas = document.getElementById('canvas');
     const imageData = canvas.toDataURL('image/png');
-    downloadBtn.href = imageData;
+    downloadLink.href = imageData;
   });
 }

@@ -90,8 +90,7 @@ function galleryTpl(memes) {
 }
 
 function generatorTpl(meme) {
-  function dropdownItems(font){
-    
+  function dropdownItems(font) {
     if (font === 'badabd') {
       return `
         <button class="dropdown-item" data-id="Impact">Impact look</button>
@@ -101,11 +100,10 @@ function generatorTpl(meme) {
       return `
         <button class="dropdown-item active" data-id="Impact">Impact look</button>
         <button class="dropdown-item" data-id="BADABB">Memezinga look</button>
-      `;  
+      `;
     }
-    
   }
-  
+
   function tagTpl(tag) {
     return `<li class="tag d-inline">${tag}</li>`;
   }
@@ -201,8 +199,8 @@ function downloadTpl(meme) {
       <section class="container main-section">
         <div class="col-lg-8 mx-auto text-center">
           <div class="mb-4 mr-5 memeContainer">
-          
-          
+
+
             <div class="previewText">
               <span class="topPreviewText"></span>
               <span class="bottomPreviewText"></span>
@@ -212,8 +210,8 @@ function downloadTpl(meme) {
             </div>
           </div>
           <canvas id="canvas"></canvas>
-          <button type="button" class="btn btn-danger">
-            <a id="downloadBtn" href=""  download="memezinga_meme.png">Download</a>
+          <button type="button" class="btn btn-danger downloadBtn">
+            <a id="downloadLink" href=""  download="memezinga_meme.png">Download</a>
           </button>
         </div>
       </section>
