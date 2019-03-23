@@ -121,8 +121,8 @@ function generatorTpl(meme) {
       </div>
     </div>
     <main class="main-section">
-      <section class="container-fluid d-flex flex-column flex-md-row justify-content-center mt-5 mb-5">
-        <div class="mb-4 mr-5 memeContainer">
+      <section class="container-fluid d-flex flex-column flex-md-row justify-content-md-center align-items-center mt-5 mb-5">
+        <div class="mb-4 mr-md-5 memeContainer">
           <div class="previewText">
             <span class="topPreviewText">${meme.topText}</span>
             <span class="bottomPreviewText">${meme.bottomText}</span>
@@ -196,11 +196,9 @@ function downloadTpl(meme) {
       </div>
     </div>
     <main class="home-main-section">
-      <section class="container main-section">
-        <div class="col-lg-8 mx-auto text-center">
+      <section class="container align-items-center main-section download-tpl">
+        <div class="col-lg-8 mx-auto mt-5 text-center download-tpl">
           <div class="mb-4 mr-5 memeContainer">
-
-
             <div class="previewText">
               <span class="topPreviewText"></span>
               <span class="bottomPreviewText"></span>

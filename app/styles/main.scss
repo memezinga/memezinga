@@ -5,6 +5,7 @@ $memezingaYellow: #fef851;
 $main-fontFamily: 'Roboto Condensed';
 $tags-fontFamily: 'BADABB';
 $navbar-dark: #000;
+$break-xs: 359px;
 $break-small: 575.98px;
 $break-medium: 768px;
 $break-large: 992px;
@@ -180,7 +181,6 @@ body {
 
 .btn-danger {
   background-color: $memezingaRed;
-  margin-top: 2.5em;
 }
 
 /* Custom page gallery */
@@ -206,6 +206,17 @@ body {
 
 .generator-controls {
   max-width: 600px;
+}
+
+@media screen and (max-width: $break-small) {
+  .generator-controls {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+  }
+  .generator-controls > ul {
+    text-align: center;
+  }
 }
 
 .generator-buttons {
@@ -405,6 +416,28 @@ body {
   color: #fff;
   font-family: $main-fontFamily, sans-serif;
   text-decoration: none;
+}
+
+.download-tpl {
+  padding: 0;
+}
+
+@media screen and (min-width: $break-xs) {
+  .download-tpl {
+    padding: 0 12px;
+  }
+}
+
+@media screen and (min-width: 411px) and (max-width: 414px) {
+  .download-tpl {
+    padding: 0 24px;
+  }
+}
+
+@media screen and (min-width: $break-medium) and (max-width: $break-large) {
+  .download-tpl {
+    padding: 0 5.5rem;
+  }
 }
 
 #canvas {
